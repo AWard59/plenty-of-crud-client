@@ -1,1 +1,44 @@
 @import '~bootstrap/scss/bootstrap';
+
+body {
+  background-color: rgb(245, 228, 194);
+}
+
+nav {
+  background-color: rgb(237, 226, 204);
+  height: 60px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 2.2
+}
+
+.border {
+  border: 5px solid black;
+  margin: 15px;
+  padding: 15px;
+}
+
+form {
+  display: grid;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+#home-page, #settings-page, #profile-page {
+  display: none
+}
+
+#sign-out {
+  display: flex;
+  justify-content: center;
+}
+
+#sign-out-button {
+  display: block;
+  width: 90%;
+}
