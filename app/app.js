@@ -6,11 +6,11 @@ const ui = require('./ui')
 // require('./example')
 
 $(() => {
-  $('.navBurger').on('click', console.log('hi'))
   $('#sign-up').on('submit', authEvents.onSignUp)
   $('#sign-in').on('submit', authEvents.onSignIn)
   $('#sign-out').on('click', authEvents.onSignOut)
   $('#change-password').on('submit', authEvents.onChangePassword)
   $('#profile-link').on('click', ui.profilePage)
   $('#settings-link').on('click', ui.settingsPage)
+  $('#edit-profile').on('submit', authEvents.onUpdateProfile)
 })

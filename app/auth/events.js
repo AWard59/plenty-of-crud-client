@@ -25,8 +25,9 @@ const onSignIn = function (event) {
 
   api.signIn(formData)
     .then(data => {
-      events.userData(data.user)
+      events.setUserData(data)
       store.user = data.user
+      console.log(store.user)
       ui.signInSuccess()
     })
     .catch(ui.signInFailure)
@@ -44,15 +45,25 @@ const onChangePassword = function (event) {
   const form = event.target
   const formData = getFormFields(form)
 
-  api
-    .changePassword(formData)
+  api.changePassword(formData)
     .then(ui.changePasswordSuccess)
-    .catch(ui.changePasswordSuccess)
+    .catch(ui.changePasswordFailure)
+}
+
+const onUpdateProfile = function (event) {
+  event.preventDefault()
+  const form = event.target
+  const formData = getFormFields(form)
+
+  api.updateProfile(formData)
+    .then(ui.updateProfileSuccess)
+    .catch(ui.updateProfileFailure)
 }
 
 module.exports = {
   onSignUp,
   onSignIn,
   onSignOut,
-  onChangePassword
+  onChangePassword,
+  onUpdateProfile
 }

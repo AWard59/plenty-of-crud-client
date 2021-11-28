@@ -42,9 +42,21 @@ const changePassword = function (formData) {
   })
 }
 
+const updateProfile = function (formData) {
+  return $.ajax({
+    url: `${config.apiUrl}/userProfile/`,
+    method: 'POST',
+    data: formData,
+    headers: {
+      Authorization: `Bearer ${store.user.token}`
+    }
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
   signOut,
-  changePassword
+  changePassword,
+  updateProfile
 }

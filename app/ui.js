@@ -1,5 +1,7 @@
 'use strict'
 
+const store = require('./store')
+
 const signUpSuccess = function () {
   $('#sign-up-success').html(
     '<p>Signed up successfully!</p> <br> <p>Sign In to continue</p>'
@@ -76,8 +78,28 @@ const changePasswordFailure = function () {
 }
 
 const profilePage = function () {
-  // $('#settings').hide()
+  $('#settings').hide()
   $('#profile-page').show()
+  $('#profile-display-name').val(store.profile[0])
+  $('#profile-description').val(store.profile[1])
+  $('#profile-location').val(store.profile[2])
+  $('#profile-tag').val(store.profile[3])
+  $('#profile-age').val(store.profile[4])
+  $('#profile-gender').val(store.profile[5])
+}
+
+const updateProfileSuccess = function () {
+  $('#update-profile-message').text('Profile Updated Successfully!')
+  $('#update-profile-message').removeClass()
+  $('#update-profile-message').addClass('text-success')
+  $('#update-profile-message').fadeOut(5000)
+}
+
+const updateProfileFailure = function () {
+  $('#update-profile-message').text('Profile Update Failed')
+  $('#update-profile-message').removeClass()
+  $('#update-profile-message').addClass('text-danger')
+  $('#update-profile-message').fadeOut(5000)
 }
 
 const settingsPage = function () {
@@ -95,5 +117,7 @@ module.exports = {
   changePasswordSuccess,
   changePasswordFailure,
   profilePage,
-  settingsPage
+  settingsPage,
+  updateProfileSuccess,
+  updateProfileFailure
 }
