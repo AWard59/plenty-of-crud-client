@@ -27,7 +27,8 @@ const onSignIn = function (event) {
     .then(data => {
       events.setUserData(data)
       store.user = data.user
-      console.log(store.user)
+      store.userProfile = data.user.userProfile[0]
+      console.log(store)
       ui.signInSuccess()
     })
     .catch(ui.signInFailure)
