@@ -15,7 +15,6 @@
     <body>
       <!-- Import Nav Bar from bootstrap -->
       <nav class="navbar navbar-light shadow">
-        <div class="container">
           <a class="navbar-brand justify-content-start">
             <img src="/favicon.ico" width="40" height="40" alt="" class="d-inline-block align-top">
             Plenty Of Crud
@@ -41,7 +40,6 @@
                     </li>
                   </ul>
                 </div>
-        </div>
         </div>
       </nav>
 
@@ -84,10 +82,29 @@
 
 <!-- home page -->
       <section id="home-page">
-        <div class="container-fluid border">
-          <div class="row">img</div> 
-          <div class="row">info</div> 
-          <div class="row">YesNo</div> 
+        <div class="container-fluid border shadow">
+          <div class="row"></div>
+            <div class="border shadow" id="user-image">img</div>
+            <hr>
+          <div class="flex border shadow">
+            <div>
+              <div id="user-tag"></div>
+              <div class="container form-row">
+                <h1 class="col-6" id="user-name"></h1>
+                <div class="container col-6">
+                  <p id="user-age-gender"></p>
+                  <div id="user-location"></div>
+                </div>
+              </div>
+              <hr>
+              <div id="user-about"></div>
+            </div> 
+          </div> 
+          <hr>
+          <div class="form-row">
+            <button class="btn btn-danger shadow col-5" id="user-no">No</button>
+            <button class="btn btn-success shadow col-5" id="user-yes">Yes</button>
+          </div> 
         </div>  
       </section>
 

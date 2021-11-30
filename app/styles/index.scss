@@ -12,6 +12,10 @@ nav {
   line-height: 2.2
 }
 
+.container, .container-fluid {
+  max-width: 95vw;
+}
+
 .border {
   border: 5px solid black;
   margin: 15px;
@@ -31,6 +35,32 @@ form {
 
 #home-page, #settings-page, #profile-page {
   display: none
+}
+
+#user-image {
+  height: 35vh;
+}
+
+#user-tag {
+  font-style: italic;
+  color: gray;
+  font-size: 14px;
+  margin-left: 12px;
+}
+
+#user-name {
+  font-weight: bold;
+}
+
+#user-age-gender, #user-location {
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+#user-about {
+  font-size: 20px;
+  padding: 0;
+  margin-left: 12px
 }
 
 #sign-out {

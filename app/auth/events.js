@@ -28,10 +28,15 @@ const onSignIn = function (event) {
       events.setUserData(data)
       store.user = data.user
       store.userProfile = data.user.userProfile[0]
-      console.log(store)
       ui.signInSuccess()
+      onGetUserData()
     })
     .catch(ui.signInFailure)
+}
+
+const onGetUserData = function () {
+  api.getUserData()
+    .then(userData => events.getUserData(userData))
 }
 
 const onSignOut = function () {

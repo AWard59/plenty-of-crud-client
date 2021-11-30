@@ -46,6 +46,14 @@ const signInFailure = function () {
   $('#sign-in-failure').fadeOut(5000)
 }
 
+const displayProfiles = function (profiles, num) {
+  $('#user-tag').text(profiles[num].tag)
+  $('#user-name').text(profiles[num].name)
+  $('#user-age-gender').text(`${profiles[num].age}, ${profiles[num].gender}`)
+  $('#user-location').text(profiles[num].location)
+  $('#user-about').text(profiles[num].description)
+}
+
 const signOutSuccess = function () {
   $('#settings').hide()
   $('#sign-in-page').show()
@@ -112,6 +120,7 @@ module.exports = {
   signUpFailure,
   signInSuccess,
   signInFailure,
+  displayProfiles,
   signOutSuccess,
   signOutFailure,
   changePasswordSuccess,
