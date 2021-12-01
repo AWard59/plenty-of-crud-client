@@ -72,4 +72,5 @@ module.exports = {
   onSignOut,
   onChangePassword,
   onUpdateProfile
+  // onLikeOrDislike
 }

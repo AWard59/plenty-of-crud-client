@@ -19,6 +19,16 @@ const signIn = function (formData) {
   })
 }
 
+const getUserData = function () {
+  return $.ajax({
+    url: `${config.apiUrl}/userProfile`,
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${store.user.token}`
+    }
+  })
+}
+
 // Token needs to be the same as the token created when logging in
 // delete that token - requiring user to sign in again for access
 const signOut = function () {
@@ -65,11 +75,25 @@ const updateProfile = function (formData) {
   })
 }
 
+const likeOrDislike = function (matchData) {
+  const profileId = store.userProfile._id
+  return $.ajax({
+    url: `${config.apiUrl}/userProfile/${profileId}/likeOrDislike`,
+    method: 'PATCH',
+    data: matchData,
+    headers: {
+      Authorization: `Bearer ${store.user.token}`
+    }
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
+  getUserData,
   signOut,
   changePassword,
   createProfile,
-  updateProfile
+  updateProfile,
+  likeOrDislike
 }

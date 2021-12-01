@@ -2,11 +2,15 @@
 
 const store = require('./store')
 const ui = require('./ui')
+const api = require('./auth/api')
 const shuffle = require('knuth-shuffle').knuthShuffle
 
 let profileNumber = 0
+let profileNumberMax
+let filteredAndShuffledProfiles
 
 const setUserData = function (data) {
+  // profileNumber = 0
   const profile = data.user.userProfile[0]
   const profileDisplayName = profile.name
   const profileLocation = profile.location
@@ -36,11 +40,63 @@ const getUserData = function (userData) {
     filteredProfiles._id !== store.user.likes &&
     filteredProfiles._id !== store.user.dislikes
   )
-  const filteredAndShuffledProfiles = shuffle(filterAll.slice(0))
+  filteredAndShuffledProfiles = shuffle(filterAll.slice(0))
   ui.displayProfiles(filteredAndShuffledProfiles, profileNumber)
+  store.profileArray = filteredAndShuffledProfiles
+  profileNumberMax = filteredAndShuffledProfiles.length
+  return (profileNumberMax, filteredAndShuffledProfiles)
+}
+
+const likeProfile = function () {
+  const profile = store.profileArray
+  const userId = profile[profileNumber]._id
+  const matchData = {
+    id: userId,
+    data: 'Like'
+  }
+  api.likeOrDislike(matchData)
+    .then(() => {
+      profileNumber++
+      nextProfile('liked')
+      return profileNumber
+    })
+    .catch(console.error())
+}
+
+const dislikeProfile = function () {
+  const profile = store.profileArray
+  const userId = profile[profileNumber]._id
+  const matchData = {
+    id: userId,
+    data: 'Dislike'
+  }
+  api.likeOrDislike(matchData)
+    .then(() => {
+      profileNumber++
+      nextProfile('disliked')
+      return profileNumber
+    })
+    .catch(console.error())
+}
+
+const nextProfile = function (likeOrDislike) {
+  console.log(filteredAndShuffledProfiles, profileNumber, profileNumberMax)
+  ui.likeOrDislikeMessage(likeOrDislike)
+  isLastProfile()
+}
+
+const isLastProfile = function () {
+  if (profileNumber >= profileNumberMax) {
+    ui.noMoreProfiles()
+  } else {
+    ui.displayProfiles(filteredAndShuffledProfiles, profileNumber)
+  }
 }
 
 module.exports = {
   setUserData,
-  getUserData
+  getUserData,
+  nextProfile,
+  likeProfile,
+  dislikeProfile
 }

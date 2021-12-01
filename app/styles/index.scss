@@ -37,6 +37,10 @@ form {
   display: none
 }
 
+#sign-in-message, #sign-up-message, #like-dislike-message, #change-password-message, #sign-out-message, #update-profile-message {
+  text-align: center;
+}
+
 #user-image {
   height: 35vh;
 }

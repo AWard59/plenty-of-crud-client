@@ -3,31 +3,31 @@
 const store = require('./store')
 
 const signUpSuccess = function () {
-  $('#sign-up-success').html(
+  $('#sign-up-message').html(
     '<p>Signed up successfully!</p> <br> <p>Sign In to continue</p>'
   )
-  $('#sign-up-success').removeClass()
-  $('#sign-up-success').addClass('text-success')
-  $('#sign-up-success').fadeOut(5000)
+  $('#sign-up-message').removeClass()
+  $('#sign-up-message').addClass('text-success')
+  $('#sign-up-message').fadeOut(5000)
 
   $('form').trigger('reset')
 }
 
 // text response stating failure, addclass text danger (red)
 const signUpFailure = function () {
-  $('#sign-up-failure').text('Sign up failed')
-  $('#sign-up-failure').removeClass()
-  $('#sign-up-failure').addClass('text-danger')
-  $('#sign-up-failure').fadeOut(5000)
+  $('#sign-up-message').text('Sign up failed')
+  $('#sign-up-message').removeClass()
+  $('#sign-up-message').addClass('text-danger')
+  $('#sign-up-message').fadeOut(5000)
 }
 
 // hide the sign-in-page section from user's view. show the game-page section
 // prevents a refresh of webpage
 const signInSuccess = function () {
-  $('#sign-in-success').text('Signed in successfully!')
-  $('#sign-in-success').removeClass()
-  $('#sign-in-success').addClass('text-success')
-  $('#sign-in-success').fadeOut(3000)
+  $('#sign-in-message').text('Signed in successfully!')
+  $('#sign-in-message').removeClass()
+  $('#sign-in-message').addClass('text-success')
+  $('#sign-in-message').fadeOut(3000)
 
   $('form').trigger('reset')
 
@@ -40,10 +40,18 @@ const signInSuccess = function () {
 }
 
 const signInFailure = function () {
-  $('#sign-in-failure').text('Sign in failed')
-  $('#sign-in-failure').removeClass()
-  $('#sign-in-failure').addClass('text-danger')
-  $('#sign-in-failure').fadeOut(5000)
+  $('#sign-in-message').text('Sign in failed')
+  $('#sign-in-message').removeClass()
+  $('#sign-in-message').addClass('text-danger')
+  $('#sign-in-message').fadeOut(5000)
+}
+
+const resetDisplayProfiles = function () {
+  $('#user-tag').text('')
+  $('#user-name').text('')
+  $('#user-age-gender').text('')
+  $('#user-location').text('')
+  $('#user-about').text('')
 }
 
 const displayProfiles = function (profiles, num) {
@@ -115,11 +123,24 @@ const settingsPage = function () {
   $('#settings-page').show()
 }
 
+const noMoreProfiles = function () {
+  console.log('No More Profiles')
+  resetDisplayProfiles()
+}
+
+const likeOrDislikeMessage = function (likeOrDislike) {
+  $('#like-dislike-message').removeClass()
+  $('#like-dislike-message').text(`You have ${likeOrDislike} this profile!`)
+  $('#like-dislike-message').addClass('text-success')
+  $('#like-dislike-message').fadeOut(5000)
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
   signInSuccess,
   signInFailure,
+  resetDisplayProfiles,
   displayProfiles,
   signOutSuccess,
   signOutFailure,
@@ -128,5 +149,7 @@ module.exports = {
   profilePage,
   settingsPage,
   updateProfileSuccess,
-  updateProfileFailure
+  updateProfileFailure,
+  noMoreProfiles,
+  likeOrDislikeMessage
 }
