@@ -1,40 +1,13 @@
 'use strict'
 
-const store = require('./store')
-const ui = require('./ui')
-const api = require('./auth/api')
+const store = require('../store')
+const ui = require('../profiles/ui')
+const api = require('../auth-user/api')
 const shuffle = require('knuth-shuffle').knuthShuffle
 
 let profileNumber = 0
 let profileNumberMax
 let filteredAndShuffledProfiles
-
-const setUserData = function (data, num) {
-  const profile = data.userProfile[num]
-  const profileDisplayName = profile.name
-  const profileLocation = profile.location
-  const profileDescription = profile.description
-  const profileTag = profile.tag
-  const profileAge = profile.age
-  const profileGender = profile.gender
-  const profileId = profile._id
-  const profileInfo = [
-    profileDisplayName, profileDescription, profileLocation,
-    profileTag, profileAge, profileGender, profileId
-  ]
-  for (let i = 0; i < profileInfo.length; i++) {
-    if (profileInfo[i] === undefined) {
-      profileInfo[i] = ''
-    }
-  }
-  const likes = profile.likes
-  const likedBy = profile.likedBy
-  const matchData = [
-    likes, likedBy
-  ]
-  doesSomebodyLikeMe(matchData)
-  store.profile = profileInfo
-}
 
 const getUserData = function (userData) {
   const profiles = userData.userProfile
@@ -99,11 +72,11 @@ const isLastProfile = function () {
 }
 
 const doesSomebodyLikeMe = function (matchData) {
-  const likes = matchData.likes
-  const likedBy = matchData.likedBy
-  let match
-  const newLikedBy = likedBy
-  const newLikes = likes
+  // const likes = matchData.likes
+  // const likedBy = matchData.likedBy
+  // let match
+  // const newLikedBy = likedBy
+  // const newLikes = likes
 
   // for (let i = 0; i <= likedBy.length; i++) {
   //   if (likes.includes(likedBy[i])) {
@@ -121,19 +94,10 @@ const doesSomebodyLikeMe = function (matchData) {
   // replace old arrays with new arrays in api
 }
 
-const changeProfile = function (event) {
-  event.preventDefault()
-  const profileIndex = $(event.target).data('index')
-  setUserData(store.user, profileIndex)
-  console.log(store)
-  ui.profilePage()
-}
-
 module.exports = {
-  setUserData,
   getUserData,
   nextProfile,
   likeProfile,
   dislikeProfile,
-  changeProfile
+  doesSomebodyLikeMe
 }

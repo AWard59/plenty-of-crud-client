@@ -3,8 +3,8 @@
 // pull the pre-written getFormFields function
 const getFormFields = require('../../lib/get-form-fields')
 const api = require('./api')
-const ui = require('../ui')
-const events = require('../events')
+const ui = require('../user/ui')
+const events = require('../user/events')
 const store = require('../store')
 
 const onSignUp = function (event) {
@@ -56,31 +56,9 @@ const onChangePassword = function (event) {
     .catch(ui.changePasswordFailure)
 }
 
-const onNewProfile = function (event) {
-  event.preventDefault()
-  const form = event.target
-  const formData = getFormFields(form)
-
-  api.createProfile(formData)
-    .then(ui.updateProfileSuccess)
-    .catch(ui.updateProfileFailure)
-}
-
-const onUpdateProfile = function (event) {
-  event.preventDefault()
-  const form = event.target
-  const formData = getFormFields(form)
-
-  api.updateProfile(formData)
-    .then(ui.updateProfileSuccess)
-    .catch(ui.updateProfileFailure)
-}
-
 module.exports = {
   onSignUp,
   onSignIn,
   onSignOut,
-  onChangePassword,
-  onNewProfile,
-  onUpdateProfile
+  onChangePassword
 }
