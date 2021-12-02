@@ -9,9 +9,8 @@ let profileNumber = 0
 let profileNumberMax
 let filteredAndShuffledProfiles
 
-const setUserData = function (data) {
-  // profileNumber = 0
-  const profile = data.user.userProfile[0]
+const setUserData = function (data, num) {
+  const profile = data.userProfile[num]
   const profileDisplayName = profile.name
   const profileLocation = profile.location
   const profileDescription = profile.description
@@ -28,6 +27,12 @@ const setUserData = function (data) {
       profileInfo[i] = ''
     }
   }
+  const likes = profile.likes
+  const likedBy = profile.likedBy
+  const matchData = [
+    likes, likedBy
+  ]
+  doesSomebodyLikeMe(matchData)
   store.profile = profileInfo
 }
 
@@ -93,10 +98,42 @@ const isLastProfile = function () {
   }
 }
 
+const doesSomebodyLikeMe = function (matchData) {
+  const likes = matchData.likes
+  const likedBy = matchData.likedBy
+  let match
+  const newLikedBy = likedBy
+  const newLikes = likes
+
+  // for (let i = 0; i <= likedBy.length; i++) {
+  //   if (likes.includes(likedBy[i])) {
+  //     match.push(likedBy[i])
+  //     newLikedBy.splice(likedBy.indexOf([i]), 1)
+  //   }
+  // }
+  // for (let i = 0; i <= likes.length; i++) {
+  //   if (match.includes(likes[i])) {
+  //     newLikes.splice(likes.indexOf([i]), 1)
+  //   }
+  // }
+
+  // match prompt
+  // replace old arrays with new arrays in api
+}
+
+const changeProfile = function (event) {
+  event.preventDefault()
+  const profileIndex = $(event.target).data('index')
+  setUserData(store.user, profileIndex)
+  console.log(store)
+  ui.profilePage()
+}
+
 module.exports = {
   setUserData,
   getUserData,
   nextProfile,
   likeProfile,
-  dislikeProfile
+  dislikeProfile,
+  changeProfile
 }

@@ -25,11 +25,11 @@ const onSignIn = function (event) {
 
   api.signIn(formData)
     .then(data => {
-      events.setUserData(data)
+      events.setUserData(data.user, 0)
       store.user = data.user
-      store.userProfile = data.user.userProfile[0]
+      // store.userProfile = data.user.userProfile[0]
       ui.signInSuccess()
-      onGetUserData()
+      onGetUserData(data, 0)
     })
     .catch(ui.signInFailure)
 }
@@ -56,6 +56,16 @@ const onChangePassword = function (event) {
     .catch(ui.changePasswordFailure)
 }
 
+const onNewProfile = function (event) {
+  event.preventDefault()
+  const form = event.target
+  const formData = getFormFields(form)
+
+  api.createProfile(formData)
+    .then(ui.updateProfileSuccess)
+    .catch(ui.updateProfileFailure)
+}
+
 const onUpdateProfile = function (event) {
   event.preventDefault()
   const form = event.target
@@ -71,6 +81,6 @@ module.exports = {
   onSignIn,
   onSignOut,
   onChangePassword,
+  onNewProfile,
   onUpdateProfile
-  // onLikeOrDislike
 }

@@ -93,8 +93,15 @@ const changePasswordFailure = function () {
   $('#change-password-message').fadeOut(5000)
 }
 
+const homePage = function () {
+  $('#settings-page').hide()
+  $('#profile-page').hide()
+  $('#home-page').show()
+}
+
 const profilePage = function () {
-  $('#settings').hide()
+  $('#settings-page').hide()
+  $('#home-page').hide()
   $('#profile-page').show()
   $('#profile-display-name').val(store.profile[0])
   $('#profile-description').val(store.profile[1])
@@ -102,6 +109,29 @@ const profilePage = function () {
   $('#profile-tag').val(store.profile[3])
   $('#profile-age').val(store.profile[4])
   $('#profile-gender').val(store.profile[5])
+  displayMultipleProfiles()
+}
+
+const displayMultipleProfiles = function () {
+  const profiles = store.user.userProfile
+  $('.multiple-profile-display').remove()
+  for (let i = 0; i < profiles.length; i++) {
+    if (profiles[i] === null) break
+    $('#profile-container').append(`
+      <div class="multiple-profile-display border col col-xs-5 shadow" id="profile-display-${i}">
+        <p>${profiles[i].name} <br>
+        ${profiles[i].age}, ${profiles[i].gender} <br>
+        ${profiles[i].location} <br>
+        ${profiles[i].description}</p>
+        <div class="multiple-profiles-buttons">
+          <button class="btn btn-success col-xs-2 select-profile" data-index="${i}">Select</button>
+          <button class="btn btn-danger col-xs-2 delete-profile" data-id="${profiles[i]._id}"">Delete</button>
+        </div>
+      </div>`)
+    if (profiles[i]._id === store.profile[6]) {
+      $(`#profile-display-${i}`).append('<div>✅</div>')
+    }
+  }
 }
 
 const updateProfileSuccess = function () {
@@ -119,7 +149,8 @@ const updateProfileFailure = function () {
 }
 
 const settingsPage = function () {
-  // $('#settings').hide()
+  $('#profile-page').hide()
+  $('#home-page').hide()
   $('#settings-page').show()
 }
 
@@ -146,6 +177,7 @@ module.exports = {
   signOutFailure,
   changePasswordSuccess,
   changePasswordFailure,
+  homePage,
   profilePage,
   settingsPage,
   updateProfileSuccess,

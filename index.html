@@ -20,14 +20,15 @@
             Plenty Of Crud
           </a>
           <!-- hamburger -->
-          <div class="justify-content-end" id="navBurger">
-            <button class="navbar-toggler pull-right navBurger shadow" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
-                ☰
-            </button>
+          <div class="justify-content-end row" id="navBurger">
             <ul class="nav">
               <li>
-                <button class="btn" id="profile-link">Profile</button>
-                <button class="btn" id="settings-link">Settings</button>
+                <a href="#" class="link" id="home-link">Home Page</a>
+                <a href="#" class="link" id="profile-link">Profile</a>
+                <a href="#" class="link" id="settings-link">Settings</a>
+                <button class="navbar-toggler pull-right navBurger shadow" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
+                    ☰
+                </button>
               </li>
             </ul>
                 <div class="collapse navbar-toggleable-sm" id="collapsingNavbar2">
@@ -46,7 +47,6 @@
 
       <!-- sign up/in page in a section container - can easily be hidden to show other pages -->
       <section id="sign-in-page">
-        <div id="sign-out-message"></div>
         <form id="sign-up" class="border shadow">
           <legend>Sign Up</legend>
           <div class="mb-3">
@@ -81,7 +81,7 @@
 
 <!-- home page -->
       <section id="home-page">
-        <div class="container-fluid border shadow">
+        <div class="container border shadow">
           <div class="row"></div>
             <div class="border shadow" id="user-image">img</div>
             <hr>
@@ -125,13 +125,14 @@
 
         <hr>
 
-        <div class="container" id="sign-out">
+        <div class="container-fluid" id="sign-out">
           <button class="btn btn-danger shadow" id="sign-out-button">Sign Out</button>
         </div>
       </section>
 
 <!-- profile page -->
       <section id="profile-page">
+
         <!-- <div class="container" id="profile-picture">
           <form class="mt-4"
             action="/upload"
@@ -151,13 +152,14 @@
         </div> -->
 
         <form class="border" id="edit-profile">
-          <div class="form-row">
-            <div class="form-group col-7">
+          <a href="#" class="link-secondary" id="clear-form-fields">Clear Fields</a>
+          <div class="row">
+            <div class="form-group col-6">
               <label for="profile-display-name">Display Name</label>
               <input type="text" class="form-control" id="profile-display-name" name="userProfile[name]">
             </div>
             <div class="form-group col-4">
-              <label for="profile-upload-picture">Upload Profile Picture</label>
+              <label for="profile-upload-picture">Profile Picture</label>
               <input type="file" name="file" id="profile-upload-picture" class="form-control-file"/>
             </div>
           </div>
@@ -188,8 +190,15 @@
           </div>
           <br>
           <button type="submit" class="btn btn-primary">Submit</button>
+          <button class="btn btn-info shadow" id="create-new-profile">Create New Profile</button>
+          <div id="update-profile-message"></div>
         </form>
-        <div id="update-profile-message"></div>
+
+        <div class="container border shadow">
+          <div class="row" id="profile-container">
+
+          </div>
+        </div>
 
       </section>
     </body>   
