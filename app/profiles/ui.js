@@ -34,6 +34,7 @@ const profilePage = function () {
   $('#profile-tag').val(store.profile[3])
   $('#profile-age').val(store.profile[4])
   $('#profile-gender').val(store.profile[5])
+  $('#edit-profile').hide()
   displayMultipleProfiles()
 }
 
@@ -41,9 +42,9 @@ const displayMultipleProfiles = function () {
   const profiles = store.user.userProfile
   $('.multiple-profile-display').remove()
   for (let i = 0; i < profiles.length; i++) {
-    if (profiles[i] === null) break
+    if (profiles[i] === null) continue
     $('#profile-container').append(`
-      <div class="multiple-profile-display border col col-xs-5 shadow" id="profile-display-${i}">
+      <div class="multiple-profile-display border col col-xs-5 col-m-3 shadow" id="profile-display-${i}">
         <p>${profiles[i].name} <br>
         ${profiles[i].age}, ${profiles[i].gender} <br>
         ${profiles[i].location} <br>
@@ -59,15 +60,59 @@ const displayMultipleProfiles = function () {
   }
 }
 
+const enableUpdate = function () {
+  $('#edit-profile').show()
+  $('#edit-profile').addClass('update-profile')
+}
+
+const enableCreate = function () {
+  $('#edit-profile').show()
+  $('#edit-profile').addClass('create-profile')
+}
+
 const updateProfileSuccess = function () {
   $('#update-profile-message').text('Profile Updated Successfully!')
   $('#update-profile-message').removeClass()
   $('#update-profile-message').addClass('text-success')
   $('#update-profile-message').fadeOut(5000)
+  $('#edit-profile').hide()
+  $('#edit-profile').removeClass('update-profile')
 }
 
 const updateProfileFailure = function () {
   $('#update-profile-message').text('Profile Update Failed')
+  $('#update-profile-message').removeClass()
+  $('#update-profile-message').addClass('text-danger')
+  $('#update-profile-message').fadeOut(5000)
+}
+
+const createProfileSuccess = function () {
+  $('#update-profile-message').text('Profile Created Successfully!')
+  $('#update-profile-message').removeClass()
+  $('#update-profile-message').addClass('text-success')
+  $('#update-profile-message').fadeOut(5000)
+  $('#edit-profile').hide()
+  $('#edit-profile').removeClass('create-profile')
+  displayMultipleProfiles()
+}
+
+const createProfileFailure = function () {
+  $('#update-profile-message').text('Profile Create Failed')
+  $('#update-profile-message').removeClass()
+  $('#update-profile-message').addClass('text-danger')
+  $('#update-profile-message').fadeOut(5000)
+}
+
+const deleteProfileSuccess = function () {
+  $('#update-profile-message').text('Profile Deleted Successfully!')
+  $('#update-profile-message').removeClass()
+  $('#update-profile-message').addClass('text-success')
+  $('#update-profile-message').fadeOut(5000)
+  displayMultipleProfiles()
+}
+
+const deleteProfileFailure = function () {
+  $('#update-profile-message').text('Profile did not delete')
   $('#update-profile-message').removeClass()
   $('#update-profile-message').addClass('text-danger')
   $('#update-profile-message').fadeOut(5000)
@@ -97,8 +142,14 @@ module.exports = {
   homePage,
   profilePage,
   settingsPage,
+  enableUpdate,
+  enableCreate,
   updateProfileSuccess,
   updateProfileFailure,
+  createProfileSuccess,
+  createProfileFailure,
+  deleteProfileSuccess,
+  deleteProfileFailure,
   noMoreProfiles,
   likeOrDislikeMessage
 }

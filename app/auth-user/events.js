@@ -3,9 +3,12 @@
 // pull the pre-written getFormFields function
 const getFormFields = require('../../lib/get-form-fields')
 const api = require('./api')
+const profileApi = require('../auth-profiles/api')
 const ui = require('../user/ui')
-const events = require('../user/events')
+const profileUI = require('../profiles/ui')
+const userEvents = require('../user/events')
 const store = require('../store')
+const profileEvents = require('../profiles/events')
 
 const onSignUp = function (event) {
   event.preventDefault()
@@ -25,18 +28,17 @@ const onSignIn = function (event) {
 
   api.signIn(formData)
     .then(data => {
-      events.setUserData(data.user, 0)
+      userEvents.setUserData(data.user, 0)
       store.user = data.user
-      // store.userProfile = data.user.userProfile[0]
       ui.signInSuccess()
-      onGetUserData(data, 0)
+      onGetUserProfileData(data, 0)
     })
     .catch(ui.signInFailure)
 }
 
-const onGetUserData = function () {
-  api.getUserData()
-    .then(userData => events.getUserData(userData))
+const onGetUserProfileData = function () {
+  profileApi.getUserData()
+    .then((userData) => profileEvents.getUserData(userData))
 }
 
 const onSignOut = function () {
@@ -56,9 +58,19 @@ const onChangePassword = function (event) {
     .catch(ui.changePasswordFailure)
 }
 
+const getUserData = function () {
+  api.getUser()
+    .then(data => {
+      store.user = data.user
+      profileUI.profilePage()
+    })
+}
+
 module.exports = {
   onSignUp,
   onSignIn,
+  onGetUserProfileData,
   onSignOut,
-  onChangePassword
+  onChangePassword,
+  getUserData
 }

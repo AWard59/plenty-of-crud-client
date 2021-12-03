@@ -1,6 +1,16 @@
 const config = require('../config')
 const store = require('../store')
 
+const getUser = function () {
+  return $.ajax({
+    url: `${config.apiUrl}/user/`,
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${store.user.token}`
+    }
+  })
+}
+
 // using formData from events.js, make POST request to api to create a new user object
 // return result
 const signUp = function (formData) {
@@ -16,16 +26,6 @@ const signIn = function (formData) {
     url: `${config.apiUrl}/sign-in`,
     method: 'POST',
     data: formData
-  })
-}
-
-const getUserData = function () {
-  return $.ajax({
-    url: `${config.apiUrl}/userProfile`,
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${store.user.token}`
-    }
   })
 }
 
@@ -53,9 +53,9 @@ const changePassword = function (formData) {
 }
 
 module.exports = {
+  getUser,
   signUp,
   signIn,
-  getUserData,
   signOut,
   changePassword
 }

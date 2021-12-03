@@ -77,9 +77,17 @@ form {
   -webkit-border-radius: 50px 50px 50px 50px;
 }
 
+span {
+  color: red
+}
+
 #profile-container, #multiple-profiles-buttons {
   flex-wrap: wrap;
   font-size: 4vw;
+}
+
+#clear-form-fields {
+  text-align: end;
 }
 
 #sign-out {

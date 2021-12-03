@@ -145,56 +145,61 @@
                 name="file"
                 id="input-files"
                 class="form-control-file border"
-              />
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div> -->
+        <div class="form-row container">
+          <button id="update-profile" class="btn btn-primary shadow col-5">Update Profile</button>
+          <button id="create-profile" class="btn btn-info shadow col-5">Create New Profile</button>
+        </div>
+        <div class="container border" id="edit-profile-container">
+          <form id="edit-profile">
+            <input type="reset" href="#" class="link-secondary" id="clear-form-fields" name="clear-form-fields">Clear Fields
+            <div class="row">
+              <div class="form-group col-6">
+                <label for="profile-display-name"><span>* </span>Display Name</label>
+                <input type="text" class="form-control" id="profile-display-name" name="userProfile[name]" required>
+              </div>
+              <div class="form-group col-4">
+                <label for="profile-upload-picture">Profile Picture</label>
+                <input type="file" name="file" id="profile-upload-picture" class="form-control-file"/>
+              </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-        </div> -->
-
-        <form class="border" id="edit-profile">
-          <a href="#" class="link-secondary" id="clear-form-fields">Clear Fields</a>
-          <div class="row">
+            <div class="form-group">
+              <label for="profile-location"><span>* </span>Location</label>
+              <input type="text" class="form-control" id="profile-location" name="userProfile[location]" required>
+            </div>
+            <div class="form-group">
+              <label for="profile-description"><span>* </span>About Me</label>
+              <textarea type="text" class="form-control" id="profile-description" name="userProfile[description]" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="profile-tag">Tag</label>
+              <input type="text" class="form-control" id="profile-tag" name="userProfile[tag]">
+            </div>
+            <div class="form-row">
+            <div class="form-group col-5">
+              <label for="profile-age"><span>* </span>Age</label>
+              <input type="number" class="form-control" id="profile-age" name="userProfile[age]" required>
+            </div>                                
             <div class="form-group col-6">
-              <label for="profile-display-name">Display Name</label>
-              <input type="text" class="form-control" id="profile-display-name" name="userProfile[name]">
+              <label for="profile-gender"><span>* </span>Gender</label>
+              <select type="text" class="form-control" id="profile-gender" name="userProfile[gender]" required>
+                <option>Male</option>
+                <option>Female</option>
+              </select>
             </div>
-            <div class="form-group col-4">
-              <label for="profile-upload-picture">Profile Picture</label>
-              <input type="file" name="file" id="profile-upload-picture" class="form-control-file"/>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="profile-location">Location</label>
-            <input type="text" class="form-control" id="profile-location" name="userProfile[location]">
-          </div>
-          <div class="form-group">
-            <label for="profile-description">About Me</label>
-            <textarea type="text" class="form-control" id="profile-description" name="userProfile[description]"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="profile-tag">Tag</label>
-            <input type="text" class="form-control" id="profile-tag" name="userProfile[tag]">
-          </div>
-          <div class="form-row">
-          <div class="form-group col-5">
-            <label for="profile-age">Age</label>
-            <input class="form-control" id="profile-age" type="number" name="userProfile[age]">
-          </div>                                
-          <div class="form-group col-6">
-            <label for="profile-gender">Gender</label>
-            <select type="text" class="form-control" id="profile-gender" name="userProfile[gender]">
-              <option>Male</option>
-              <option>Female</option>
-            </select>
-          </div>
-          </div>
-          <br>
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <button class="btn btn-info shadow" id="create-new-profile">Create New Profile</button>
-          <div id="update-profile-message"></div>
-        </form>
+            <br>
+            <button type="submit" class="btn btn-primary shadow">Submit</button>
+          </form>
+        </div>
+        <div id="update-profile-message"></div>
 
         <div class="container border shadow">
+          <h4>Your Profiles</h4>
           <div class="row" id="profile-container">
 
           </div>
