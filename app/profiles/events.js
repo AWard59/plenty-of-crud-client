@@ -3,6 +3,7 @@
 const store = require('../store')
 const ui = require('../profiles/ui')
 const api = require('../auth-user/api')
+const authProfileApi = require('../auth-profiles/api')
 const shuffle = require('knuth-shuffle').knuthShuffle
 
 let profileNumber = 0
@@ -32,7 +33,7 @@ const likeProfile = function () {
     id: userId,
     data: 'Like'
   }
-  api.likeOrDislike(matchData)
+  authProfileApi.likeOrDislike(matchData)
     .then(() => {
       profileNumber++
       nextProfile('liked')
@@ -58,7 +59,6 @@ const dislikeProfile = function () {
 }
 
 const nextProfile = function (likeOrDislike) {
-  console.log(filteredAndShuffledProfiles, profileNumber, profileNumberMax)
   ui.likeOrDislikeMessage(likeOrDislike)
   isLastProfile()
 }
@@ -72,27 +72,30 @@ const isLastProfile = function () {
 }
 
 const doesSomebodyLikeMe = function (matchData) {
-  // const likes = matchData.likes
-  // const likedBy = matchData.likedBy
-  // let match
-  // const newLikedBy = likedBy
-  // const newLikes = likes
+  const likes = matchData[0]
+  const likedBy = matchData[1]
+  let match
+  const newLikedBy = likedBy
+  const newLikes = likes
 
-  // for (let i = 0; i <= likedBy.length; i++) {
-  //   if (likes.includes(likedBy[i])) {
-  //     match.push(likedBy[i])
-  //     newLikedBy.splice(likedBy.indexOf([i]), 1)
-  //   }
+  if (likes.length === 0) likes.push('')
+  if (likedBy.length === 0) likedBy.push('')
+  console.log('likedby', likedBy)
+  for (let i = 0; i <= likedBy.length; i++) {
+    if (likes.includes(likedBy[i])) {
+      match.push(likedBy[i])
+      newLikedBy.splice(likedBy.indexOf([i]), 1)
+    }
+  }
+  console.log(match)
+  // for (let j = 0; j <= match.length; j++) {
+  //   const k = match[j]
+  //   newLikes.splice(likes.indexOf([k]), 1)
   // }
-  // for (let i = 0; i <= likes.length; i++) {
-  //   if (match.includes(likes[i])) {
-  //     newLikes.splice(likes.indexOf([i]), 1)
-  //   }
-  // }
-
-  // match prompt
-  // replace old arrays with new arrays in api
 }
+
+// match prompt
+// replace old arrays with new arrays in api
 
 module.exports = {
   getUserData,
