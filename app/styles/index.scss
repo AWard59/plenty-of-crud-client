@@ -6,14 +6,27 @@ body {
 
 nav {
   background-color: rgb(237, 226, 204);
-  height: 60px;
   margin-bottom: 10px;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 2.2
 }
 
-.nav {
-  font-size: 3vw;
+#brand-image {
+  height: auto;
+  width: auto;
+  max-height: 80px;
+  max-width: 80px
+}
+
+.nav-link {
+  font-size:14px;
+  line-height: 0.2;
+  margin: 0px
+}
+
+.navbar-collapse {
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end; 
 }
 
 .container, .container-fluid {

@@ -14,13 +14,13 @@
     </head>
     <body>
       <!-- Import Nav Bar from bootstrap -->
-      <nav class="navbar navbar-light shadow">
+      <!-- <nav class="navbar navbar-light shadow navbar-toggle">
           <a class="navbar-brand justify-content-start">
             <img src="/favicon.ico" width="40" height="40" alt="" class="d-inline-block align-top">
             Plenty Of Crud
-          </a>
+          </a> -->
           <!-- hamburger -->
-          <div class="justify-content-end row" id="navBurger">
+          <!-- <div class="justify-content-end row" id="navBurger">
             <ul class="nav">
               <li>
                 <a href="#" class="link" id="home-link">Home Page</a>
@@ -43,7 +43,26 @@
                 </div>
         </div>
         <div id="sign-out-message"></div>
-      </nav>
+      </nav> -->
+
+      <nav class="navbar navbar-expand-xl navbar-light shadow">
+        <a class="navbar-brand d-inline-block align-top" id="home-link" href="#">
+          <img src="/favicon.ico" id="brand-image" alt="">
+          Plenty Of Crud
+        </a>
+        <div class="flex-row justify-content-end">
+        <button class="navbar-toggler shadow" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" id="profile-link" href="#">Profile</a>
+            <a class="nav-item nav-link" id="settings-link" href="#">Settings</a>
+          </div>
+        </div>
+        </div>
+        <div id="sign-out-message"></div>
+      </nav> 
 
       <!-- sign up/in page in a section container - can easily be hidden to show other pages -->
       <section id="sign-in-page">
