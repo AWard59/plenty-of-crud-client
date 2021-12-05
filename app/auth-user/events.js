@@ -30,8 +30,12 @@ const onSignIn = function (event) {
     .then(data => {
       userEvents.setUserData(data.user, 0)
       store.user = data.user
-      ui.signInSuccess()
       onGetUserProfileData(data, 0)
+      let isNew = 'notNew'
+      if (data.user.userProfile[0] === undefined) {
+        isNew = 'new'
+      }
+      ui.signInSuccess(isNew)
     })
     .catch(ui.signInFailure)
 }

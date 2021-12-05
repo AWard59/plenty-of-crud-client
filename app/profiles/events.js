@@ -87,7 +87,7 @@ const doesSomebodyLikeMe = function (matchData) {
       newLikedBy.splice(likedBy.indexOf([i]), 1)
     }
   }
-  console.log(match)
+  console.log('match', match)
   // for (let j = 0; j <= match.length; j++) {
   //   const k = match[j]
   //   newLikes.splice(likes.indexOf([k]), 1)

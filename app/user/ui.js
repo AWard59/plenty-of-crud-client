@@ -21,20 +21,24 @@ const signUpFailure = function () {
 
 // hide the sign-in-page section from user's view. show the game-page section
 // prevents a refresh of webpage
-const signInSuccess = function () {
+const signInSuccess = function (isNew) {
   $('#sign-in-message').text('Signed in successfully!')
   $('#sign-in-message').removeClass()
   $('#sign-in-message').addClass('text-success')
   $('#sign-in-message').fadeOut(3000)
-
   $('form').trigger('reset')
 
   $('#sign-in-page').hide()
   $('#home-page').show()
-
   $('#home').text('Signed in successfully!')
   $('#home').addClass('text-success')
   $('#home').fadeOut(2000)
+
+  if (isNew === 'new') {
+    $('#edit-profile').addClass('create-profile')
+    $('#update-profile').hide()
+    $('#create-profile').hide()
+  }
 }
 
 const signInFailure = function () {

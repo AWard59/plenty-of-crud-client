@@ -8,7 +8,8 @@ nav {
   background-color: rgb(237, 226, 204);
   margin-bottom: 10px;
   font-size: 18px;
-  line-height: 2.2
+  line-height: 2.2;
+  width: 100vw
 }
 
 #brand-image {
@@ -29,14 +30,22 @@ nav {
     justify-content: flex-end; 
 }
 
+section {
+  max-width: 95vw;
+  margin-left: 2.5vw;
+  margin-right: 2.5vw;
+  padding: 0
+}
+
 .container, .container-fluid {
   max-width: 95vw;
 }
 
 .border {
   border: 5px solid black;
-  margin: 15px;
-  padding: 15px;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 15px
 }
 
 form {

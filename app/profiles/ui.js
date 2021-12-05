@@ -24,18 +24,23 @@ const homePage = function () {
   $('#home-page').show()
 }
 
-const profilePage = function () {
-  $('#settings-page').hide()
-  $('#home-page').hide()
-  $('#profile-page').show()
-  $('#profile-display-name').val(store.profile[0])
-  $('#profile-description').val(store.profile[1])
-  $('#profile-location').val(store.profile[2])
-  $('#profile-tag').val(store.profile[3])
-  $('#profile-age').val(store.profile[4])
-  $('#profile-gender').val(store.profile[5])
-  $('#edit-profile').hide()
-  displayMultipleProfiles()
+const profilePage = function (isNew) {
+  if (isNew === 'new') {
+    $('#home-page').hide()
+    $('#profile-page').show()
+  } else {
+    $('#home-page').hide()
+    $('#settings-page').hide()
+    $('#profile-page').show()
+    $('#profile-display-name').val(store.profile[0])
+    $('#profile-description').val(store.profile[1])
+    $('#profile-location').val(store.profile[2])
+    $('#profile-tag').val(store.profile[3])
+    $('#profile-age').val(store.profile[4])
+    $('#profile-gender').val(store.profile[5])
+    $('#edit-profile').hide()
+    displayMultipleProfiles()
+  }
 }
 
 const displayMultipleProfiles = function () {
