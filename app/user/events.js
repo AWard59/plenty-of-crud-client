@@ -41,6 +41,7 @@ const changeProfile = function (event) {
   const profileIndex = $(event.target).data('index')
   setUserData(store.user, profileIndex)
   profileUI.profilePage()
+  profileEvents.getUserData(store.user)
 }
 
 module.exports = {

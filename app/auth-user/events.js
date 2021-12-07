@@ -28,21 +28,21 @@ const onSignIn = function (event) {
 
   api.signIn(formData)
     .then(data => {
-      userEvents.setUserData(data.user, 0)
       store.user = data.user
-      onGetUserProfileData(data, 0)
       let isNew = 'notNew'
       if (data.user.userProfile[0] === undefined) {
         isNew = 'new'
       }
+      userEvents.setUserData(data.user, 0)
+      onGetUserProfileData()
       ui.signInSuccess(isNew)
     })
     .catch(ui.signInFailure)
 }
 
-const onGetUserProfileData = function () {
+const onGetUserProfileData = function (num) {
   profileApi.getUserData()
-    .then((userData) => profileEvents.getUserData(userData))
+    .then((userData) => profileEvents.getUserData(userData, num))
 }
 
 const onSignOut = function () {

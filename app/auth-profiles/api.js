@@ -56,10 +56,50 @@ const getUserData = function () {
   })
 }
 
+const addMatches = function (matchIds, newLikes, newLikedBy) {
+  const profileId = store.profile[6]
+  return $.ajax({
+    url: `${config.apiUrl}/userProfile/${profileId}/matches`,
+    method: 'PATCH',
+    data: {
+      matchIds: matchIds,
+      newLikes: newLikes,
+      newLikedBy: newLikedBy
+    },
+    headers: {
+      Authorization: `Bearer ${store.user.token}`
+    }
+  })
+}
+
+const getMatches = function () {
+  const profileId = store.profile[6]
+  return $.ajax({
+    url: `${config.apiUrl}/userProfile/${profileId}/matches`,
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${store.user.token}`
+    }
+  })
+}
+
+const getMatchProfileData = function (matchID) {
+  return $.ajax({
+    url: `${config.apiUrl}/userProfile/matches/userData/${matchID}`,
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${store.user.token}`
+    }
+  })
+}
+
 module.exports = {
   createProfile,
   updateProfile,
   deleteProfile,
   likeOrDislike,
-  getUserData
+  getUserData,
+  addMatches,
+  getMatches,
+  getMatchProfileData
 }

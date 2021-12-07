@@ -8,19 +8,26 @@ const resetDisplayProfiles = function () {
   $('#user-age-gender').text('')
   $('#user-location').text('')
   $('#user-about').text('')
+  $('#user-image').attr('src', '')
 }
 
 const displayProfiles = function (profiles, num) {
-  $('#user-tag').text(profiles[num].tag)
   $('#user-name').text(profiles[num].name)
   $('#user-age-gender').text(`${profiles[num].age}, ${profiles[num].gender}`)
   $('#user-location').text(profiles[num].location)
   $('#user-about').text(profiles[num].description)
+  if (profiles[num].tag !== undefined) {
+    $('#user-tag').text(profiles[num].tag)
+  }
+  if (profiles[num].image === undefined) {
+    $('#user-image').attr('src', '../../favicon.ico')
+  }
 }
 
 const homePage = function () {
   $('#settings-page').hide()
   $('#profile-page').hide()
+  $('#matches-page').hide()
   $('#home-page').show()
 }
 
@@ -31,6 +38,7 @@ const profilePage = function (isNew) {
   } else {
     $('#home-page').hide()
     $('#settings-page').hide()
+    $('#matches-page').hide()
     $('#profile-page').show()
     $('#profile-display-name').val(store.profile[0])
     $('#profile-description').val(store.profile[1])
@@ -43,6 +51,20 @@ const profilePage = function (isNew) {
   }
 }
 
+const settingsPage = function () {
+  $('#profile-page').hide()
+  $('#home-page').hide()
+  $('#matches-page').hide()
+  $('#settings-page').show()
+}
+
+const matchesPage = function () {
+  $('#settings-page').hide()
+  $('#profile-page').hide()
+  $('#home-page').hide()
+  $('#matches-page').show()
+}
+
 const displayMultipleProfiles = function () {
   const profiles = store.user.userProfile
   $('.multiple-profile-display').remove()
@@ -51,9 +73,9 @@ const displayMultipleProfiles = function () {
     $('#profile-container').append(`
       <div class="multiple-profile-display border col col-xs-5 col-m-3 shadow" id="profile-display-${i}">
         <p>${profiles[i].name} <br>
-        ${profiles[i].age}, ${profiles[i].gender} <br>
-        ${profiles[i].location} <br>
-        ${profiles[i].description}</p>
+          ${profiles[i].age}, ${profiles[i].gender} <br>
+          ${profiles[i].location} <br>
+          ${profiles[i].description}</p>
         <div class="multiple-profiles-buttons">
           <button class="btn btn-success col-xs-2 select-profile" data-index="${i}">Select</button>
           <button class="btn btn-danger col-xs-2 delete-profile" data-id="${profiles[i]._id}"">Delete</button>
@@ -67,11 +89,13 @@ const displayMultipleProfiles = function () {
 
 const enableUpdate = function () {
   $('#edit-profile').show()
+  $('#edit-profile').removeClass('create-profile')
   $('#edit-profile').addClass('update-profile')
 }
 
 const enableCreate = function () {
   $('#edit-profile').show()
+  $('#edit-profile').removeClass('update-profile')
   $('#edit-profile').addClass('create-profile')
 }
 
@@ -123,22 +147,34 @@ const deleteProfileFailure = function () {
   $('#update-profile-message').fadeOut(5000)
 }
 
-const settingsPage = function () {
-  $('#profile-page').hide()
-  $('#home-page').hide()
-  $('#settings-page').show()
-}
-
 const noMoreProfiles = function () {
-  console.log('No More Profiles')
+  $('#user-no').hide()
+  $('#user-yes').hide()
   resetDisplayProfiles()
+  $('#no-more-profiles').text('🚫  No more profiles to view!')
 }
 
 const likeOrDislikeMessage = function (likeOrDislike) {
-  $('#like-dislike-message').removeClass()
+  $('#like-dislike-message').removeClass().stop(true, true).show()
   $('#like-dislike-message').text(`You have ${likeOrDislike} this profile!`)
   $('#like-dislike-message').addClass('text-success')
   $('#like-dislike-message').fadeOut(5000)
+}
+
+const displayMultipleMatches = function (matches) {
+  $('.multiple-matches-display').remove()
+  for (let i = 0; i < matches.length; i++) {
+    $('#matches-container').append(`
+      <div class="multiple-matches-display border col col-xs-5 col-m-3 shadow" id="matches-display-${i}">
+        <p>${matches[i].data.name} <br>
+          ${matches[i].data.age}, ${matches[i].data.gender} <br>
+          ${matches[i].data.location} <br>
+          ${matches[i].data.description}</p>
+        <div class="multiple-matches-buttons">
+          <button class="btn btn-danger col-xs-2 delete-profile" data-id="${matches[i].data._id}"">Delete</button>
+        </div>
+      </div>`)
+  }
 }
 
 module.exports = {
@@ -147,6 +183,7 @@ module.exports = {
   homePage,
   profilePage,
   settingsPage,
+  matchesPage,
   enableUpdate,
   enableCreate,
   updateProfileSuccess,
@@ -156,5 +193,6 @@ module.exports = {
   deleteProfileSuccess,
   deleteProfileFailure,
   noMoreProfiles,
-  likeOrDislikeMessage
+  likeOrDislikeMessage,
+  displayMultipleMatches
 }

@@ -8,22 +8,27 @@ const shuffle = require('knuth-shuffle').knuthShuffle
 
 let profileNumber = 0
 let profileNumberMax
-let filteredAndShuffledProfiles
+let profilesFiltered
 
 const getUserData = function (userData) {
   const profiles = userData.userProfile
   const filterOwner = profiles.filter(filteredProfiles =>
     filteredProfiles.owner !== store.user._id
   )
-  const filterAll = filterOwner.filter(filteredProfiles =>
-    filteredProfiles._id !== store.user.likes &&
+  const filterLikes = filterOwner.filter(filteredProfiles =>
+    filteredProfiles._id !== store.user.likeOrDislike
+  )
+  const filterDislikes = filterLikes.filter(filteredProfiles =>
     filteredProfiles._id !== store.user.dislikes
   )
-  filteredAndShuffledProfiles = shuffle(filterAll.slice(0))
-  ui.displayProfiles(filteredAndShuffledProfiles, profileNumber)
-  store.profileArray = filteredAndShuffledProfiles
-  profileNumberMax = filteredAndShuffledProfiles.length
-  return (profileNumberMax, filteredAndShuffledProfiles)
+  const filterMatched = filterDislikes.filter(filteredProfiles =>
+    filteredProfiles._id !== store.user.matched
+  )
+  profilesFiltered = shuffle(filterMatched.slice(0))
+  ui.displayProfiles(profilesFiltered, profileNumber)
+  store.profileArray = profilesFiltered
+  profileNumberMax = profilesFiltered.length
+  return (profileNumberMax, profilesFiltered)
 }
 
 const likeProfile = function () {
@@ -61,41 +66,62 @@ const dislikeProfile = function () {
 const nextProfile = function (likeOrDislike) {
   ui.likeOrDislikeMessage(likeOrDislike)
   isLastProfile()
+  authProfileApi.getUserData()
+    .then((data) => {
+      const profile = data.userProfile
+      let profileId
+      for (let i = 0; i < profile.length; i++) {
+        if (profile[i]._id === store.profile[6]) {
+          profileId = profile[i]
+          break
+        }
+      }
+      const matchData = [
+        profileId.likes,
+        profileId.likedBy
+      ]
+      doesSomebodyLikeMe(matchData)
+    })
 }
 
 const isLastProfile = function () {
   if (profileNumber >= profileNumberMax) {
     ui.noMoreProfiles()
   } else {
-    ui.displayProfiles(filteredAndShuffledProfiles, profileNumber)
+    ui.displayProfiles(profilesFiltered, profileNumber)
   }
 }
 
 const doesSomebodyLikeMe = function (matchData) {
   const likes = matchData[0]
   const likedBy = matchData[1]
-  let match
+  const newMatch = []
   const newLikedBy = likedBy
   const newLikes = likes
 
   if (likes.length === 0) likes.push('')
   if (likedBy.length === 0) likedBy.push('')
-  console.log('likedby', likedBy)
   for (let i = 0; i <= likedBy.length; i++) {
-    if (likes.includes(likedBy[i])) {
-      match.push(likedBy[i])
+    if (likes !== '' && likes.includes(likedBy[i])) {
+      newMatch.push(likedBy[i])
       newLikedBy.splice(likedBy.indexOf([i]), 1)
     }
   }
-  console.log('match', match)
-  // for (let j = 0; j <= match.length; j++) {
-  //   const k = match[j]
-  //   newLikes.splice(likes.indexOf([k]), 1)
-  // }
+  for (let j = 0; j <= newMatch.length; j++) {
+    const k = newMatch[j]
+    newLikes.splice(likes.indexOf([k]), 1)
+  }
+  // match prompt
+  if (newMatch[0] !== '' && newMatch.length > 0) {
+    authProfileApi.addMatches(newMatch, newLikes, newLikedBy)
+      .then(() => {
+        for (let i = 0; i < newMatch.length; i++) {
+          console.log(`Congrats, You have matched with ${newMatch[i]}`)
+        }
+        $('#matches-link').show()
+      })
+  }
 }
-
-// match prompt
-// replace old arrays with new arrays in api
 
 module.exports = {
   getUserData,

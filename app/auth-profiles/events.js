@@ -12,7 +12,8 @@ const onNewProfile = function (event) {
   const form = event.target
   const formData = getFormFields(form)
 
-  api.createProfile(formData)
+  api
+    .createProfile(formData)
     .then(() => {
       authUserEvents.getUserData()
       ui.createProfileSuccess()
@@ -25,7 +26,8 @@ const onUpdateProfile = function (event) {
   const form = event.target
   const formData = getFormFields(form)
 
-  api.updateProfile(formData)
+  api
+    .updateProfile(formData)
     .then(() => {
       const profile = formData.userProfile
       const profileDisplayName = profile.name
@@ -35,9 +37,16 @@ const onUpdateProfile = function (event) {
       const profileAge = parseInt(profile.age)
       const profileGender = profile.gender
       const profileId = store.profile[6]
+      const profileImg = store.profile[7]
       const profileInfo = [
-        profileDisplayName, profileDescription, profileLocation,
-        profileTag, profileAge, profileGender, profileId
+        profileDisplayName,
+        profileDescription,
+        profileLocation,
+        profileTag,
+        profileAge,
+        profileGender,
+        profileId,
+        profileImg
       ]
       store.profile = profileInfo
     })
@@ -52,7 +61,8 @@ const onDeleteProfile = function (event) {
   event.preventDefault()
   const profileID = $(event.target).data('id')
 
-  api.deleteProfile(profileID)
+  api
+    .deleteProfile(profileID)
     .then(() => {
       authUserEvents.getUserData()
       ui.deleteProfileSuccess()
@@ -60,8 +70,36 @@ const onDeleteProfile = function (event) {
     .catch(ui.deleteProfileFailure)
 }
 
+const onGetMatches = function () {
+  api.getMatches().then((data) => {
+    const filterNull = data.matches.filter(
+      (filteredMatches) => filteredMatches !== null
+    )
+    const uniqueMatches = [...new Set(filterNull)]
+    const filteredArray = []
+    for (let i = 0; i < uniqueMatches.length; i++) {
+      if (uniqueMatches[i].length === 24) {
+        filteredArray.push(uniqueMatches[i])
+      }
+    }
+    getMatchesData(filteredArray)
+  })
+}
+
+const getMatchesData = async function (matchData) {
+  const userMatchData = []
+  for (let i = 0; i < matchData.length; i++) {
+    await api.getMatchProfileData(matchData[i]).then((returnUser) => {
+      userMatchData[i] = returnUser
+    })
+  }
+  ui.displayMultipleMatches(userMatchData)
+  ui.matchesPage()
+}
+
 module.exports = {
   onNewProfile,
   onUpdateProfile,
-  onDeleteProfile
+  onDeleteProfile,
+  onGetMatches
 }

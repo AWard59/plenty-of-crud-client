@@ -5,18 +5,22 @@ const authProfileEvents = require('./auth-profiles/events')
 const userEvents = require('./user/events')
 const profileEvents = require('./profiles/events')
 const profileUI = require('./profiles/ui')
+const userUI = require('./user/ui')
 
 // use require without a reference to ensure a file is bundled
 // require('./example')
 
 $(() => {
+  $('#sign-up-button').on('click', userUI.signUpDisplay)
+  $('#sign-in-button').on('click', userUI.signInDisplay)
   $('#sign-up').on('submit', authUserEvents.onSignUp)
   $('#sign-in').on('submit', authUserEvents.onSignIn)
-  $('#sign-out').on('click', authUserEvents.onSignOut)
+  $('#sign-out-button').on('click', authUserEvents.onSignOut)
   $('#change-password').on('submit', authUserEvents.onChangePassword)
   $('#profile-link').on('click', profileUI.profilePage)
   $('#settings-link').on('click', profileUI.settingsPage)
   $('#home-link').on('click', profileUI.homePage)
+  $('#matches-link').on('click', authProfileEvents.onGetMatches)
   $('#update-profile').on('click', profileUI.enableUpdate)
   $('#create-profile').on('click', profileUI.enableCreate)
   $('#edit-profile-container').on('submit', '.update-profile', authProfileEvents.onUpdateProfile)

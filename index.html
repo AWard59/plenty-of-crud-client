@@ -14,144 +14,144 @@
     </head>
     <body>
       <!-- Import Nav Bar from bootstrap -->
-      <!-- <nav class="navbar navbar-light shadow navbar-toggle">
-          <a class="navbar-brand justify-content-start">
-            <img src="/favicon.ico" width="40" height="40" alt="" class="d-inline-block align-top">
-            Plenty Of Crud
-          </a> -->
-          <!-- hamburger -->
-          <!-- <div class="justify-content-end row" id="navBurger">
-            <ul class="nav">
-              <li>
-                <a href="#" class="link" id="home-link">Home Page</a>
-                <a href="#" class="link" id="profile-link">Profile</a>
-                <a href="#" class="link" id="settings-link">Settings</a>
-                <button class="navbar-toggler pull-right navBurger shadow" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
-                    ☰
-                </button>
-              </li>
-            </ul>
-                <div class="collapse navbar-toggleable-sm" id="collapsingNavbar2">
-                  <ul class="nav navbar-nav">
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link dropdown-item" href="#">Link</a>
-                    </li>
-                  </ul>
-                </div>
-        </div>
-        <div id="sign-out-message"></div>
-      </nav> -->
-
-      <nav class="navbar navbar-expand-xl navbar-light shadow">
-        <a class="navbar-brand d-inline-block align-top" id="home-link" href="#">
+      <nav class="navbar navbar-expand-xl row navbar-light shadow">
+        <a class="navbar-brand align-top col-5" id="home-link" href="#">
           <img src="/favicon.ico" id="brand-image" alt="">
           Plenty Of Crud
         </a>
-        <div class="flex-row justify-content-end">
-        <button class="navbar-toggler shadow" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="col-2 nav-burger">
+          <button class="navbar-toggler shadow" id="nav-button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link" id="profile-link" href="#">Profile</a>
-            <a class="nav-item nav-link" id="settings-link" href="#">Settings</a>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" id="profile-link" href="#">Profile</a>
+              <a class="nav-item nav-link" id="settings-link" href="#">Settings</a>
+              <a class="nav-item nav-link" id="matches-link" href="#">Matches</a>
+            </div>
           </div>
         </div>
-        </div>
-        <div id="sign-out-message"></div>
-        <div id="home"></div>
       </nav> 
+      <div id="sign-out-message"></div>
 
       <!-- sign up/in page in a section container - can easily be hidden to show other pages -->
-      <section id="sign-in-page">
-        <form id="sign-up" class="border shadow">
-          <legend>Sign Up</legend>
-          <div class="mb-3">
-            <input type="email" class="form-control shadow" name ="credentials[email]" placeholder="Email Address" required>
-          </div>
-          <div class="mb-3">
-            <input type="password" class="form-control shadow" name="credentials[password]" placeholder="Password" required>
-          </div>
-          <div class="mb-3">
-            <input type="password" class="form-control shadow" name="credentials[password_confirmation]" placeholder="Password Confirmation" required>
-          </div>
-          <button type="submit" class="btn btn-success shadow-lg">Sign Up</button>
-          <div id="sign-up-message"></div>
-        </form>
+      <section class="container border shadow" id="sign-in-page">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-6">
+              <div class="text-center">
+                <img src="./favicon.ico" style="width: 25vw">
+                <h3 class="mt-1 mb-2 pb-1">Plenty of Crud</h3>
+              </div>
+              <!-- sign in -->
+              <form id="sign-in" class="border shadow">
+                <h5 class="mt-1">Log in to your account</h5>
+                <div class="form-outline form-floating mb-4">
+                  <input type="email" class="form-control shadow" name ="credentials[email]" id="sign-in-email" placeholder="Email Address" required>
+                  <label for="sign-in-email">Email Address</label>
+                </div>
 
-        <hr>
-<!-- sign in page -->
-        <form id="sign-in" class="border shadow">
-          <legend>Sign In</legend>
-          <div class="mb-3">
-            <input type="email" class="form-control shadow" name ="credentials[email]" placeholder="Email Address" required>
+                <div class="form-outline form-floating mb-4">
+                  <input type="password" class="form-control shadow" name="credentials[password]" id="sign-in-password" placeholder="Password" required>
+                  <label for="sign-in-password">Password</label>
+                </div>
+
+                <div class="text-center pt-1 mb-2 pb-1">
+                  <button class="btn btn-block fa-lg gradient-custom-2 mb-3 shadow-lg" id="login-button" type="submit">Log in</button>
+                </div>
+                <div class="d-flex align-items-center justify-content-center pb-4">
+                  <p class="mb-0 me-2">Don't have an account?</p>
+                  <button type="button" class="btn btn-outline-danger" id="sign-up-button">Create new</button>
+                </div>
+                <div id="sign-in-message"></div>
+              </form>
+              <!-- sign up -->
+              <form id="sign-up" class="border shadow">
+                <h5 class="mt-1">Create an account</h5>
+                <div class="form-outline form-floating mb-4">
+                  <input type="email" class="form-control shadow" name ="credentials[email]" id="sign-up-email" placeholder="Email Address" required>
+                  <label for="sign-up-email">Email Address</label>
+                </div>
+
+                <div class="form-outline form-floating mb-4">
+                  <input type="password" class="form-control shadow" name="credentials[password]" id="sign-up-password" placeholder="Password" required>
+                  <label for="sign-up-password">Password</label>
+                </div>
+
+                <div class="form-outline form-floating mb-4">
+                  <input type="password" class="form-control shadow" name="credentials[password_confirmation]" id="sign-up-password-confirmation" placeholder="Password Confirmation" required>
+                  <label for="sign-up-password-confirmation">Password Confirmation</label>
+                </div>
+
+                <div class="text-center pt-1 mb-2 pb-1 button-display">
+                  <button class="btn btn-block fa-lg gradient-custom-2 mb-3 shadow-lg" id="create-button" type="submit">Sign Up</button>
+                </div>
+                <div class="d-flex align-items-center justify-content-center pb-4">
+                  <p class="mb-0 me-2">Already have an account?</p>
+                  <button type="button" class="btn btn-outline-danger" id="sign-in-button">Log In</button>
+                </div>
+                <div id="sign-up-message"></div>
+              </form>
+
+            </div>
           </div>
-          <div class="mb-3">
-            <input type="password" class="form-control shadow" name="credentials[password]" placeholder="Password" required>
-          </div>
-          <div class="mb-3">
-          </div>
-          <button type="submit" class="btn btn-primary shadow-lg">Sign In</button>
-          <div id="sign-in-message"></div>
-        </form>
       </section>
 
 <!-- home page -->
-      <section id="home-page">
-        <div class="container border shadow">
-          <div class="row"></div>
-            <div class="border shadow" id="user-image">img</div>
-            <hr>
-          <div class="flex border shadow">
-            <div>
-              <div id="user-tag"></div>
-              <div class="container form-row">
-                <h1 class="col-6" id="user-name"></h1>
-                <div class="container col-6">                                           
-                  <p id="user-age-gender"></p>
-                  <div id="user-location"></div>
-                </div>
+      <section class="container border shadow" id="home-page">
+        <div class="row"></div>
+          <div id="image-display">
+            <img class="border shadow" id="user-image">
+          </div>
+          <br>
+          <div class="flex border shadow" id="user-display">
+            <div id="user-tag"></div>
+            <div class="container form-row">
+              <h1 class="col-6" id="user-name"></h1>
+              <div class="container col-6">                                           
+                <p id="user-age-gender"></p>
+                <div id="user-location"></div>
               </div>
-              <hr>
-              <div id="user-about"></div>
-            </div> 
-          </div> 
-          <hr>
-          <div class="form-row">
-            <button class="btn btn-danger shadow col-5" id="user-no">No</button>
-            <button class="btn btn-success shadow col-5" id="user-yes">Yes</button>
+            </div>
+            <div id="user-about"></div>
+            <div id="no-more-profiles"></div>
           </div> 
           <br>
-          <div id="like-dislike-message"></div>
-        </div>  
+          <div class="form-row">
+            <button class="btn shadow col-5" id="user-no">No</button>
+            <button class="btn shadow col-5" id="user-yes">Yes</button>
+          </div> 
+          <br>
+        <div id="like-dislike-message"></div>
       </section>
 
 <!-- settings page -->
-      <section id="settings-page">
+      <section class="container border shadow" id="settings-page">
+        <br>
         <form id="change-password" class="border shadow">
           <legend>Change Password</legend>
-          <div class="mb-3">
-            <input type="password" class="form-control shadow" name="passwords[old]" placeholder="Old Password" required>
+          <div class="mb-3 form-floating">
+            <input type="password" class="form-control shadow" id="old-password" name="passwords[old]" placeholder="Old Password" required>
+            <label for="old-password">Old Password</label>
           </div>
-          <div class="mb-3">
-            <input type="password" class="form-control shadow" name="passwords[new]" placeholder="New Password" required>
+          <div class="mb-3 form-floating">
+            <input type="password" class="form-control shadow" id="new-password" name="passwords[new]" placeholder="New Password" required>
+            <label for="new-password">New Password</label>
           </div>
-          <button type="submit" class="btn btn-success shadow">Submit</button>
+          <div class="button-display">
+            <button type="submit" class="btn shadow button-display" id="change-password-button">Submit</button>
+          </div>
           <div id="change-password-message"></div>
         </form>
 
         <hr>
 
-        <div class="container-fluid" id="sign-out">
-          <button class="btn btn-danger shadow" id="sign-out-button">Sign Out</button>
+        <div class="container-fluid button-display">
+          <button class="btn shadow" id="sign-out-button">Sign Out</button>
         </div>
       </section>
 
 <!-- profile page -->
-      <section id="profile-page">
+      <section class="container border shadow" id="profile-page">
 
         <!-- <div class="container" id="profile-picture">
           <form class="mt-4"
@@ -170,61 +170,76 @@
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
           </div> -->
-        <div class="form-row container">
-          <button id="update-profile" class="btn btn-primary shadow col-5">Update Profile</button>
-          <button id="create-profile" class="btn btn-info shadow col-5">Create New Profile</button>
-        </div>
-        <div class="container border" id="edit-profile-container">
-          <form id="edit-profile">
-            <div type="reset" href="#" class="link-secondary" id="clear-form-fields" name="clear-form-fields">Clear Fields</div>
-            <div class="row">
-              <div class="form-group col-6">
-                <label for="profile-display-name"><span>* </span>Display Name</label>
-                <input type="text" class="form-control" id="profile-display-name" name="userProfile[name]" required>
+          <div class="container border" id="edit-profile-container">
+            <form id="edit-profile">
+              <div type="reset" href="#" class="link-secondary" id="clear-form-fields" name="clear-form-fields">Clear Fields</div>
+              <div class="row">
+                <div class="form-group col-6 form-floating">
+                  <input type="text" class="form-control" id="profile-display-name" name="userProfile[name]" required>
+                  <label for="profile-display-name"><span>* </span>Display Name</label>
+                </div>
+                <div class="form-group col-4">
+                  <label for="profile-upload-picture">Profile Picture</label>
+                  <input type="file" name="file" id="profile-upload-picture" class="form-control-file"/>
+                </div>
               </div>
-              <div class="form-group col-4">
-                <label for="profile-upload-picture">Profile Picture</label>
-                <input type="file" name="file" id="profile-upload-picture" class="form-control-file"/>
+              <div class="form-group form-floating">
+                <input type="text" class="form-control" id="profile-location" name="userProfile[location]" required>
+                <label for="profile-location"><span>* </span>Location</label>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="profile-location"><span>* </span>Location</label>
-              <input type="text" class="form-control" id="profile-location" name="userProfile[location]" required>
-            </div>
-            <div class="form-group">
-              <label for="profile-description"><span>* </span>About Me</label>
-              <textarea type="text" class="form-control" id="profile-description" name="userProfile[description]" required></textarea>
-            </div>
-            <div class="form-group">
-              <label for="profile-tag">Tag</label>
-              <input type="text" class="form-control" id="profile-tag" name="userProfile[tag]">
-            </div>
-            <div class="form-row">
-            <div class="form-group col-5">
-              <label for="profile-age"><span>* </span>Age</label>
-              <input type="number" class="form-control" id="profile-age" name="userProfile[age]" required>
-            </div>                                
-            <div class="form-group col-6">
-              <label for="profile-gender"><span>* </span>Gender</label>
-              <select type="text" class="form-control" id="profile-gender" name="userProfile[gender]" required>
-                <option>Male</option>
-                <option>Female</option>
-              </select>
-            </div>
-            </div>
-            <br>
-            <button type="submit" class="btn btn-primary shadow">Submit</button>
-          </form>
-        </div>
-        <div id="update-profile-message"></div>
+              <div class="form-group form-floating">
+                <textarea type="text" class="form-control" id="profile-description" name="userProfile[description]" required></textarea>
+                <label for="profile-description"><span>* </span>About Me</label>
+              </div>
+              <div class="form-group form-floating">
+                <input type="text" class="form-control" id="profile-tag" name="userProfile[tag]">
+                <label for="profile-tag">Tag</label>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-5 form-floating">
+                  <input type="number" class="form-control" id="profile-age" name="userProfile[age]" required>
+                  <label for="profile-age"><span>* </span>Age</label>
+                </div>                                
+                <div class="form-group col-6 form-floating">
+                  <select type="text" class="form-control form-select" id="profile-gender" name="userProfile[gender]" required>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+                  <label for="profile-gender"><span>* </span>Gender</label>
+                </div>
+              </div>
+              <br>
+              <div class="button-display">
+                <button type="submit" class="btn shadow" id="submit-profile-change-button">Submit</button>
+              </div>
+            </form>
+          </div>
 
-        <div class="container border shadow">
+        <br>
+        <div id="update-profile-message"></div>
+        <div class="form-row container">
+          <button id="update-profile" class="btn shadow col-5">Update Profile</button>
+          <button id="create-profile" class="btn shadow col-5">Create New Profile</button>
+        </div>
+          
+        <br>  
+        <div class="container border shadow" id="your-profiles-display">
           <h4>Your Profiles</h4>
           <div class="row" id="profile-container">
 
           </div>
         </div>
 
+      </section>
+
+      <!-- matches page -->
+      <section class="container border shadow" id="matches-page">
+        <div class="container border shadow" id="your-matches-display">
+          <h4>Your Matches</h4>
+          <div class="row" id="matches-container">
+
+          </div>
+        </div>
       </section>
     </body>   
 </html>

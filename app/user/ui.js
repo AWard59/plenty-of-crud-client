@@ -1,5 +1,15 @@
 'use strict'
 
+const signUpDisplay = function () {
+  $('#sign-in').hide()
+  $('#sign-up').show()
+}
+
+const signInDisplay = function () {
+  $('#sign-up').hide()
+  $('#sign-in').show()
+}
+
 const signUpSuccess = function () {
   $('#sign-up-message').html(
     '<p>Signed up successfully!</p> <br> <p>Sign In to continue</p>'
@@ -29,6 +39,7 @@ const signInSuccess = function (isNew) {
   $('form').trigger('reset')
 
   $('#sign-in-page').hide()
+  $('.navbar').show()
   $('#home-page').show()
   $('#home').text('Signed in successfully!')
   $('#home').addClass('text-success')
@@ -49,7 +60,7 @@ const signInFailure = function () {
 }
 
 const signOutSuccess = function () {
-  $('#settings').hide()
+  $('#settings-page').hide()
   $('#sign-in-page').show()
   $('#sign-out-message').show()
   $('#sign-out-message').html('<p class=text-success>Signed Out Successfully</p>')
@@ -80,6 +91,8 @@ const changePasswordFailure = function () {
 }
 
 module.exports = {
+  signUpDisplay,
+  signInDisplay,
   signUpSuccess,
   signUpFailure,
   signInSuccess,

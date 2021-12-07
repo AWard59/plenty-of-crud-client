@@ -1,33 +1,78 @@
 @import '~bootstrap/scss/bootstrap';
 
+// color palette
+$color1: #EBE3CB;
+$color2: #FB6B5B;
+$color3: #342C54;
+$color4: #FC8B76;
+
+.rounded-borders {
+  border-radius: 50px 50px 50px 50px;
+  -moz-border-radius: 50px 50px 50px 50px;
+  -webkit-border-radius: 50px 50px 50px 50px
+};
+
 body {
-  background-color: rgb(245, 228, 194);
+  background-color: $color3;
+}
+
+#home-page, #settings-page, #profile-page, #matches-page, .navbar, #sign-up, #matches-link {
+  display: none
+}
+
+.btn, #nav-button {
+  @extend .rounded-borders
+}
+
+.button-display {
+  display: flex;
+  justify-content: center;
+}
+
+.button-display > .btn,  #login-button, #create-button, #change-password-button {
+  width: 35vw
+}
+
+#login-button, #create-button, #change-password-button, #submit-profile-change-button, #user-yes {
+  background-color: $color3;
+  color: $color2;
+  font-weight: bold;
+}
+
+#update-profile, #create-profile, #user-no, #sign-out-button {
+  background-color: $color2;
+  color: $color3;
+  font-weight: bold;
 }
 
 nav {
-  background-color: rgb(237, 226, 204);
+  background-color: $color1;
   margin-bottom: 10px;
   font-size: 18px;
   line-height: 2.2;
-  width: 100vw
+  width: 100vw;
+  display: flex;
+  align-content: space-around;
 }
 
 #brand-image {
   height: auto;
   width: auto;
   max-height: 80px;
-  max-width: 80px
+  max-width: 80px;
+  margin-left: 5vw;
 }
 
 .nav-link {
-  font-size:14px;
+  font-size: 14px;
   line-height: 0.2;
   margin: 0px
 }
 
-.navbar-collapse {
-    -webkit-justify-content: flex-end;
-    justify-content: flex-end; 
+#nav-burger {
+  margin-right: 5vw;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 section {
@@ -59,8 +104,22 @@ form {
   justify-content: space-between;
 }
 
-#home-page, #settings-page, #profile-page {
-  display: none
+#sign-in-page {
+  height: 95vh
+}
+
+#sign-in-page, #home-page, #settings-page, #profile-page, #matches-page {
+  max-height: 95vh;
+  width: 95vw;
+  margin: 2.5vw;
+  background-color: $color1;
+  @extend .rounded-borders
+}
+
+#sign-in, #sign-up, #change-password, #edit-profile-container, #your-profiles-display, #your-matches-display {
+  background-color: $color4;
+  margin-top: 0;
+  @extend .rounded-borders
 }
 
 #sign-in-message, #sign-up-message, #like-dislike-message, #change-password-message, #sign-out-message, #update-profile-message {
@@ -68,7 +127,20 @@ form {
 }
 
 #user-image {
-  height: 35vh;
+  max-height: 35vh;
+  max-width: 35vw;
+  padding: 0;
+  @extend .rounded-borders
+}
+
+#image-display {
+  display: flex;
+  justify-content: center;
+}
+
+#user-display {
+  background-color: $color4;
+  @extend .rounded-borders
 }
 
 #user-tag {
@@ -93,23 +165,10 @@ form {
   margin-left: 12px
 }
 
-#user-no, #user-yes {
-  border-radius: 50px 50px 50px 50px;
-  -moz-border-radius: 50px 50px 50px 50px;
-  -webkit-border-radius: 50px 50px 50px 50px;
-}
-
-span {
-  color: red
-}
-
-#profile-container, #multiple-profiles-buttons {
-  flex-wrap: wrap;
-  font-size: 4vw;
-}
-
-#clear-form-fields {
-  text-align: end;
+#no-more-profiles {
+  text-align:center;
+  font-weight: bold;
+  color: $color3
 }
 
 #sign-out {
@@ -117,7 +176,28 @@ span {
   justify-content: center;
 }
 
-#sign-out-button {
-  display: block;
-  width: 90%;
+#profile-container, #multiple-profiles-buttons, #matches-container {
+  flex-wrap: wrap;
+  font-size: 4vw;
+}
+
+span {
+  color: red
+}
+
+#clear-form-fields {
+  text-align: end;
+  font-weight: bold;
+}
+
+.multiple-profile-display {
+  background-color: $color2;
+  text-align: center;
+  @extend .rounded-borders
+}
+
+.multiple-matches-display {
+  background-color: $color2;
+  text-align: center;
+  @extend .rounded-borders
 }
