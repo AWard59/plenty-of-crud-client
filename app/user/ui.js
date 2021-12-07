@@ -61,6 +61,7 @@ const signInFailure = function () {
 
 const signOutSuccess = function () {
   $('#settings-page').hide()
+  $('.navbar').hide()
   $('#sign-in-page').show()
   $('#sign-out-message').show()
   $('#sign-out-message').html('<p class=text-success>Signed Out Successfully</p>')

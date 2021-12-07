@@ -1,4 +1,5 @@
 @import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 // color palette
 $color1: #EBE3CB;
@@ -14,6 +15,7 @@ $color4: #FC8B76;
 
 body {
   background-color: $color3;
+  font-family: 'Montserrat', sans-serif;
 }
 
 #home-page, #settings-page, #profile-page, #matches-page, .navbar, #sign-up, #matches-link {
