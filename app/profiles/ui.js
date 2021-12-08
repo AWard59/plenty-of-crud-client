@@ -126,6 +126,8 @@ const createProfileSuccess = function () {
   $('#edit-profile').removeClass('create-profile')
   profilePage()
   displayProfiles()
+  $('@update-profile').show()
+  $('#create-profile').show()
 }
 
 const createProfileFailure = function () {
