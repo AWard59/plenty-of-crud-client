@@ -20,7 +20,7 @@ const displayProfiles = function (profiles, num) {
     $('#user-tag').text(profiles[num].tag)
   }
   if (profiles[num].image === undefined) {
-    $('#user-image').attr('src', '../../favicon.ico')
+    $('#user-image').attr('src', 'https://i.imgur.com/n7FH6re.png')
   }
 }
 
