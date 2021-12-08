@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Plenty of CRUD</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+
+    </head>
+    <body>
+      <!-- Import Nav Bar from bootstrap -->
+      <nav class="navbar navbar-expand-xl row navbar-light shadow">
+        <a class="navbar-brand align-top col-5" id="home-link" href="#">
+          <img src="https://i.imgur.com/n7FH6re.png" id="brand-image" alt="">
+          Plenty Of CRUD
+        </a>
+        <div class="col-2 nav-burger">
+          <button class="navbar-toggler shadow" id="nav-button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" id="profile-link" href="#">Profile</a>
+              <a class="nav-item nav-link" id="settings-link" href="#">Settings</a>
+              <a class="nav-item nav-link" id="matches-link" href="#">Matches</a>
+            </div>
+          </div>
+        </div>
+      </nav> 
+      <div id="sign-out-message"></div>
+
+      <!-- sign up/in page in a section container - can easily be hidden to show other pages -->
+      <section class="container border shadow" id="sign-in-page">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-6">
+              <div class="text-center">
+                <img src="https://i.imgur.com/n7FH6re.png" style="width: 25vw">
+                <h3 class="mt-1 mb-2 pb-1">Plenty of CRUD</h3>
+              </div>
+              <!-- sign in -->
+              <form id="sign-in" class="border shadow">
+                <h5 class="mt-1">Log in to your account</h5>
+                <div class="form-outline form-floating mb-4">
+                  <input type="email" class="form-control shadow" name ="credentials[email]" id="sign-in-email" placeholder="Email Address" required>
+                  <label for="sign-in-email">Email Address</label>
+                </div>
+
+                <div class="form-outline form-floating mb-4">
+                  <input type="password" class="form-control shadow" name="credentials[password]" id="sign-in-password" placeholder="Password" required>
+                  <label for="sign-in-password">Password</label>
+                </div>
+
+                <div class="text-center pt-1 mb-2 pb-1">
+                  <button class="btn btn-block fa-lg gradient-custom-2 mb-3 shadow-lg" id="login-button" type="submit">Log in</button>
+                </div>
+                <div class="d-flex align-items-center justify-content-center pb-4">
+                  <p class="mb-0 me-2">Don't have an account?</p>
+                  <button type="button" class="btn btn-outline-danger" id="sign-up-button">Create new</button>
+                </div>
+                <div id="sign-in-message"></div>
+              </form>
+              <!-- sign up -->
+              <form id="sign-up" class="border shadow">
+                <h5 class="mt-1">Create an account</h5>
+                <div class="form-outline form-floating mb-4">
+                  <input type="email" class="form-control shadow" name ="credentials[email]" id="sign-up-email" placeholder="Email Address" required>
+                  <label for="sign-up-email">Email Address</label>
+                </div>
+
+                <div class="form-outline form-floating mb-4">
+                  <input type="password" class="form-control shadow" name="credentials[password]" id="sign-up-password" placeholder="Password" required>
+                  <label for="sign-up-password">Password</label>
+                </div>
+
+                <div class="form-outline form-floating mb-4">
+                  <input type="password" class="form-control shadow" name="credentials[password_confirmation]" id="sign-up-password-confirmation" placeholder="Password Confirmation" required>
+                  <label for="sign-up-password-confirmation">Password Confirmation</label>
+                </div>
+
+                <div class="text-center pt-1 mb-2 pb-1 button-display">
+                  <button class="btn btn-block fa-lg gradient-custom-2 mb-3 shadow-lg" id="create-button" type="submit">Sign Up</button>
+                </div>
+                <div class="d-flex align-items-center justify-content-center pb-4">
+                  <p class="mb-0 me-2">Already have an account?</p>
+                  <button type="button" class="btn btn-outline-danger" id="sign-in-button">Log In</button>
+                </div>
+                <div id="sign-up-message"></div>
+              </form>
+
+            </div>
+          </div>
+      </section>
+
+<!-- home page -->
+      <section class="container border shadow" id="home-page">
+        <div class="row"></div>
+          <div id="image-display">
+            <img class="border shadow" id="user-image">
+          </div>
+          <br>
+          <div class="flex border shadow" id="user-display">
+            <div id="user-tag"></div>
+            <div class="container form-row">
+              <h1 class="col-6" id="user-name"></h1>
+              <div class="container col-6">                                           
+                <p id="user-age-gender"></p>
+                <div id="user-location"></div>
+              </div>
+            </div>
+            <div id="user-about"></div>
+            <div id="no-more-profiles"></div>
+          </div> 
+          <br>
+          <div class="form-row">
+            <button class="btn shadow col-5" id="user-no">No</button>
+            <button class="btn shadow col-5" id="user-yes">Yes</button>
+          </div> 
+          <br>
+        <div id="like-dislike-message"></div>
+      </section>
+
+<!-- settings page -->
+      <section class="container border shadow" id="settings-page">
+        <br>
+        <form id="change-password" class="border shadow">
+          <legend>Change Password</legend>
+          <div class="mb-3 form-floating">
+            <input type="password" class="form-control shadow" id="old-password" name="passwords[old]" placeholder="Old Password" required>
+            <label for="old-password">Old Password</label>
+          </div>
+          <div class="mb-3 form-floating">
+            <input type="password" class="form-control shadow" id="new-password" name="passwords[new]" placeholder="New Password" required>
+            <label for="new-password">New Password</label>
+          </div>
+          <div class="button-display">
+            <button type="submit" class="btn shadow button-display" id="change-password-button">Submit</button>
+          </div>
+          <div id="change-password-message"></div>
+        </form>
+
+        <hr>
+
+        <div class="container-fluid button-display">
+          <button class="btn shadow" id="sign-out-button">Sign Out</button>
+        </div>
+      </section>
+
+<!-- profile page -->
+      <section class="container border shadow" id="profile-page">
+
+        <!-- <div class="container" id="profile-picture">
+          <form class="mt-4"
+            action="/upload"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <div class="form-group">
+              <input
+                type="file"
+                name="file"
+                id="input-files"
+                class="form-control-file border"
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div> -->
+          <div class="container border" id="edit-profile-container">
+            <form id="edit-profile">
+              <div type="reset" href="#" class="link-secondary" id="clear-form-fields" name="clear-form-fields">Clear Fields</div>
+              <div class="row">
+                <div class="form-group col-6 form-floating">
+                  <input type="text" class="form-control" id="profile-display-name" name="userProfile[name]" required>
+                  <label for="profile-display-name"><span>* </span>Display Name</label>
+                </div>
+                <div class="form-group col-4">
+                  <label for="profile-upload-picture">Profile Picture</label>
+                  <input type="file" name="file" id="profile-upload-picture" class="form-control-file"/>
+                </div>
+              </div>
+              <div class="form-group form-floating">
+                <input type="text" class="form-control" id="profile-location" name="userProfile[location]" required>
+                <label for="profile-location"><span>* </span>Location</label>
+              </div>
+              <div class="form-group form-floating">
+                <textarea type="text" class="form-control" id="profile-description" name="userProfile[description]" required></textarea>
+                <label for="profile-description"><span>* </span>About Me</label>
+              </div>
+              <div class="form-group form-floating">
+                <input type="text" class="form-control" id="profile-tag" name="userProfile[tag]">
+                <label for="profile-tag">Tag</label>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-5 form-floating">
+                  <input type="number" class="form-control" id="profile-age" name="userProfile[age]" required>
+                  <label for="profile-age"><span>* </span>Age</label>
+                </div>                                
+                <div class="form-group col-6 form-floating">
+                  <select type="text" class="form-control form-select" id="profile-gender" name="userProfile[gender]" required>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+                  <label for="profile-gender"><span>* </span>Gender</label>
+                </div>
+              </div>
+              <br>
+              <div class="button-display">
+                <button type="submit" class="btn shadow" id="submit-profile-change-button">Submit</button>
+              </div>
+            </form>
+          </div>
+
+        <br>
+        <div id="update-profile-message"></div>
+        <div class="form-row container">
+          <button id="update-profile" class="btn shadow col-5">Update Profile</button>
+          <button id="create-profile" class="btn shadow col-5">Create New Profile</button>
+        </div>
+          
+        <br>  
+        <div class="container border shadow" id="your-profiles-display">
+          <h4>Your Profiles</h4>
+          <div class="row" id="profile-container">
+
+          </div>
+        </div>
+
+      </section>
+
+      <!-- matches page -->
+      <section class="container border shadow" id="matches-page">
+        <div class="container border shadow" id="your-matches-display">
+          <h4>Your Matches</h4>
+          <div class="row" id="matches-container">
+
+          </div>
+        </div>
+      </section>
+
+      <div id="match-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content border shadow">
+            <div class="modal-header">
+              <h5 class="modal-title">You have a match!</h5>
+              <button type="button" class="btn-close modal-exit" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p id="modal-match-text"></p>
+              <br>
+              <p>You can see your matches on the 'matches' page.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="modal-match-close" class="btn shadow modal-exit" data-bs-dismiss="modal">Close</button>
+              <button type="button" id="modal-match-matches" class="btn shadow">Go there now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </body>   
+</html>
