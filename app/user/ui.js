@@ -46,6 +46,8 @@ const signInSuccess = function (isNew) {
   $('#home').fadeOut(2000)
 
   if (isNew === 'new') {
+    $('.navbar').hide()
+    $('#home-page').hide()
     $('#edit-profile').addClass('create-profile')
     $('#update-profile').hide()
     $('#create-profile').hide()
