@@ -107,6 +107,7 @@ const updateProfileSuccess = function () {
   $('#update-profile-message').fadeOut(5000)
   $('#edit-profile').hide()
   $('#edit-profile').removeClass('update-profile')
+  profilePage()
 }
 
 const updateProfileFailure = function () {
@@ -123,7 +124,8 @@ const createProfileSuccess = function () {
   $('#update-profile-message').fadeOut(5000)
   $('#edit-profile').hide()
   $('#edit-profile').removeClass('create-profile')
-  displayMultipleProfiles()
+  profilePage()
+  displayProfiles()
 }
 
 const createProfileFailure = function () {
