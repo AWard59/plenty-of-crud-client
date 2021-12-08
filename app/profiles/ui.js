@@ -152,6 +152,15 @@ const deleteProfileFailure = function () {
   $('#update-profile-message').fadeOut(5000)
 }
 
+const clearFormFields = function () {
+  $('#profile-display-name').val('')
+  $('#profile-description').val('')
+  $('#profile-location').val('')
+  $('#profile-tag').val('')
+  $('#profile-age').val('')
+  $('#profile-gender').val('')
+}
+
 const noMoreProfiles = function () {
   $('#user-no').hide()
   $('#user-yes').hide()
@@ -201,6 +210,7 @@ module.exports = {
   createProfileFailure,
   deleteProfileSuccess,
   deleteProfileFailure,
+  clearFormFields,
   noMoreProfiles,
   likeOrDislikeMessage,
   displayMultipleMatches,

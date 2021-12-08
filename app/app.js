@@ -25,6 +25,7 @@ $(() => {
   $('#create-profile').on('click', profileUI.enableCreate)
   $('#edit-profile-container').on('submit', '.update-profile', authProfileEvents.onUpdateProfile)
   $('#edit-profile-container').on('submit', '.create-profile', authProfileEvents.onNewProfile)
+  $('#clear-form-fields').on('click', profileUI.clearFormFields)
   $('#user-no').on('click', profileEvents.dislikeProfile)
   $('#user-yes').on('click', profileEvents.likeProfile)
   $('#profile-container').on('click', '.select-profile', userEvents.changeProfile)
