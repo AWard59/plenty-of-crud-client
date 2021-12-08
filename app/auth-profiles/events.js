@@ -71,19 +71,20 @@ const onDeleteProfile = function (event) {
 }
 
 const onGetMatches = function () {
-  api.getMatches().then((data) => {
-    const filterNull = data.matches.filter(
-      (filteredMatches) => filteredMatches !== null
-    )
-    const uniqueMatches = [...new Set(filterNull)]
-    const filteredArray = []
-    for (let i = 0; i < uniqueMatches.length; i++) {
-      if (uniqueMatches[i].length === 24) {
-        filteredArray.push(uniqueMatches[i])
+  api.getMatches()
+    .then((data) => {
+      const filterNull = data.matches.filter(
+        (filteredMatches) => filteredMatches !== null
+      )
+      const uniqueMatches = [...new Set(filterNull)]
+      const filteredArray = []
+      for (let i = 0; i < uniqueMatches.length; i++) {
+        if (uniqueMatches[i].length === 24) {
+          filteredArray.push(uniqueMatches[i])
+        }
       }
-    }
-    getMatchesData(filteredArray)
-  })
+      getMatchesData(filteredArray)
+    })
 }
 
 const getMatchesData = async function (matchData) {

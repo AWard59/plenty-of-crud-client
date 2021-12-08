@@ -59,6 +59,7 @@ const settingsPage = function () {
 }
 
 const matchesPage = function () {
+  $('#match-modal').hide()
   $('#settings-page').hide()
   $('#profile-page').hide()
   $('#home-page').hide()
@@ -177,6 +178,10 @@ const displayMultipleMatches = function (matches) {
   }
 }
 
+const modalClose = function () {
+  $('#match-modal').hide()
+}
+
 module.exports = {
   resetDisplayProfiles,
   displayProfiles,
@@ -194,5 +199,6 @@ module.exports = {
   deleteProfileFailure,
   noMoreProfiles,
   likeOrDislikeMessage,
-  displayMultipleMatches
+  displayMultipleMatches,
+  modalClose
 }

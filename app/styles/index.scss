@@ -35,13 +35,13 @@ body {
   width: 35vw
 }
 
-#login-button, #create-button, #change-password-button, #submit-profile-change-button, #user-yes {
+#login-button, #create-button, #change-password-button, #submit-profile-change-button, #user-yes, #modal-match-matches {
   background-color: $color3;
   color: $color2;
   font-weight: bold;
 }
 
-#update-profile, #create-profile, #user-no, #sign-out-button {
+#update-profile, #create-profile, #user-no, #sign-out-button, #modal-match-close{
   background-color: $color2;
   color: $color3;
   font-weight: bold;
@@ -201,5 +201,10 @@ span {
 .multiple-matches-display {
   background-color: $color2;
   text-align: center;
+  @extend .rounded-borders
+}
+
+.modal-content {
+  background-color: $color4;
   @extend .rounded-borders
 }

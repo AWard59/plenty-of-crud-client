@@ -116,7 +116,8 @@ const doesSomebodyLikeMe = function (matchData) {
     authProfileApi.addMatches(newMatch, newLikes, newLikedBy)
       .then(() => {
         for (let i = 0; i < newMatch.length; i++) {
-          console.log(`Congrats, You have matched with ${newMatch[i]}`)
+          $('#match-modal').show()
+          $('#modal-match-text').text('Congrats, You have matched with somebody!')
         }
         $('#matches-link').show()
       })

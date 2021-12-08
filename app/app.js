@@ -29,4 +29,6 @@ $(() => {
   $('#user-yes').on('click', profileEvents.likeProfile)
   $('#profile-container').on('click', '.select-profile', userEvents.changeProfile)
   $('#profile-container').on('click', '.delete-profile', authProfileEvents.onDeleteProfile)
+  $('#modal-match-matches').on('click', authProfileEvents.onGetMatches)
+  $('.modal-exit').on('click', profileUI.modalClose)
 })

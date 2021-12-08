@@ -27,12 +27,14 @@ const setUserData = function (data, num) {
     }
     store.profile = profileInfo
 
-    const likes = profile.likes
-    const likedBy = profile.likedBy
-    const matchData = [
-      likes, likedBy
-    ]
-    profileEvents.doesSomebodyLikeMe(matchData)
+    setTimeout(() => {
+      const likes = profile.likes
+      const likedBy = profile.likedBy
+      const matchData = [
+        likes, likedBy
+      ]
+      profileEvents.doesSomebodyLikeMe(matchData)
+    }, 5000)
   }
 }
 

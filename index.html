@@ -17,7 +17,7 @@
       <nav class="navbar navbar-expand-xl row navbar-light shadow">
         <a class="navbar-brand align-top col-5" id="home-link" href="#">
           <img src="/favicon.ico" id="brand-image" alt="">
-          Plenty Of Crud
+          Plenty Of CRUD
         </a>
         <div class="col-2 nav-burger">
           <button class="navbar-toggler shadow" id="nav-button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +40,7 @@
             <div class="col-lg-6">
               <div class="text-center">
                 <img src="./favicon.ico" style="width: 25vw">
-                <h3 class="mt-1 mb-2 pb-1">Plenty of Crud</h3>
+                <h3 class="mt-1 mb-2 pb-1">Plenty of CRUD</h3>
               </div>
               <!-- sign in -->
               <form id="sign-in" class="border shadow">
@@ -241,5 +241,26 @@
           </div>
         </div>
       </section>
+
+      <div id="match-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content border shadow">
+            <div class="modal-header">
+              <h5 class="modal-title">You have a match!</h5>
+              <button type="button" class="btn-close modal-exit" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p id="modal-match-text"></p>
+              <br>
+              <p>You can see your matches on the 'matches' page.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="modal-match-close" class="btn shadow modal-exit" data-bs-dismiss="modal">Close</button>
+              <button type="button" id="modal-match-matches" class="btn shadow">Go there now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </body>   
 </html>
