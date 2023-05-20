@@ -12,6 +12,11 @@ const resetDisplayProfiles = function () {
 }
 
 const displayProfiles = function (profiles, num) {
+  if (num === undefined) {
+    profiles = store.userProfile
+    num = store.profileNumber
+  }
+  console.log(store)
   $('#user-name').text(profiles[num].name)
   $('#user-age-gender').text(`${profiles[num].age}, ${profiles[num].gender}`)
   $('#user-location').text(profiles[num].location)
@@ -32,6 +37,7 @@ const homePage = function () {
 }
 
 const profilePage = function (isNew) {
+  console.log(store.profile)
   if (isNew === 'new') {
     $('#home-page').hide()
     $('#profile-page').show()
@@ -125,7 +131,7 @@ const createProfileSuccess = function () {
   $('#edit-profile').hide()
   $('#edit-profile').removeClass('create-profile')
   profilePage()
-  displayProfiles()
+  displayProfiles(store.userProfile, store.profileNumber)
   $('@update-profile').show()
   $('#create-profile').show()
 }

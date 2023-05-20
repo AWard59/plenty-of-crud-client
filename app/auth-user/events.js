@@ -66,8 +66,8 @@ const getUserData = function () {
   api.getUser()
     .then(data => {
       store.user = data.user
-      profileUI.profilePage()
     })
+    .then(profileUI.profilePage)
 }
 
 module.exports = {

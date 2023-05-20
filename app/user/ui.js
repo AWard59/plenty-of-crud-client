@@ -19,6 +19,7 @@ const signUpSuccess = function () {
   $('#sign-up-message').fadeOut(5000)
 
   $('form').trigger('reset')
+  signInDisplay()
 }
 
 // text response stating failure, addclass text danger (red)

@@ -14,47 +14,79 @@ const onNewProfile = function (event) {
 
   api
     .createProfile(formData)
+    .then(onUpdateFirstProfile)
     .then(() => {
-      authUserEvents.getUserData()
       ui.createProfileSuccess()
+      setTimeout(() => {
+        authUserEvents.getUserData()
+      }, 1500)
     })
     .catch(ui.createProfileFailure)
 }
 
 const onUpdateProfile = function (event) {
-  event.preventDefault()
-  const form = event.target
-  const formData = getFormFields(form)
+  if (store.profile === undefined) {
+    onUpdateFirstProfile()
+  } else {
+    event.preventDefault()
+    const form = event.target
+    const formData = getFormFields(form)
 
-  api
-    .updateProfile(formData)
-    .then(() => {
-      const profile = formData.userProfile
-      const profileDisplayName = profile.name
-      const profileLocation = profile.location
-      const profileDescription = profile.description
-      const profileTag = profile.tag
-      const profileAge = parseInt(profile.age)
-      const profileGender = profile.gender
-      const profileId = store.profile[6]
-      const profileImg = store.profile[7]
-      const profileInfo = [
-        profileDisplayName,
-        profileDescription,
-        profileLocation,
-        profileTag,
-        profileAge,
-        profileGender,
-        profileId,
-        profileImg
-      ]
-      store.profile = profileInfo
-    })
-    .then(() => {
-      authUserEvents.getUserData()
-      ui.updateProfileSuccess()
-    })
-    .catch(ui.updateProfileFailure)
+    api
+      .updateProfile(formData)
+      .then(() => {
+        const profile = formData.userProfile
+        const profileDisplayName = profile.name
+        const profileLocation = profile.location
+        const profileDescription = profile.description
+        const profileTag = profile.tag
+        const profileAge = parseInt(profile.age)
+        const profileGender = profile.gender
+        const profileId = store.profile[6]
+        const profileImg = store.profile[7]
+        const profileInfo = [
+          profileDisplayName,
+          profileDescription,
+          profileLocation,
+          profileTag,
+          profileAge,
+          profileGender,
+          profileId,
+          profileImg
+        ]
+        store.profile = profileInfo
+      })
+      .then(() => {
+        authUserEvents.getUserData()
+        ui.updateProfileSuccess()
+      })
+      .catch(ui.updateProfileFailure)
+  }
+}
+
+const onUpdateFirstProfile = function () {
+  console.log('first', store)
+  const profile = store.userProfile
+  const profileDisplayName = profile.name
+  const profileLocation = profile.location
+  const profileDescription = profile.description
+  const profileTag = profile.tag
+  const profileAge = parseInt(profile.age)
+  const profileGender = profile.gender
+  const profileId = store.profile[6]
+  const profileImg = store.profile[7]
+  const profileInfo = [
+    profileDisplayName,
+    profileDescription,
+    profileLocation,
+    profileTag,
+    profileAge,
+    profileGender,
+    profileId,
+    profileImg
+  ]
+  store.profile = profileInfo
+  // ui.profilePage()
 }
 
 const onDeleteProfile = function (event) {
@@ -101,6 +133,7 @@ const getMatchesData = async function (matchData) {
 module.exports = {
   onNewProfile,
   onUpdateProfile,
+  onUpdateFirstProfile,
   onDeleteProfile,
   onGetMatches
 }

@@ -25,8 +25,9 @@ const getUserData = function (userData) {
     filteredProfiles._id !== store.user.matched
   )
   profilesFiltered = shuffle(filterMatched.slice(0))
-  ui.displayProfiles(profilesFiltered, profileNumber)
   store.profileArray = profilesFiltered
+  store.profileNumber = profileNumber
+  ui.displayProfiles(profilesFiltered, profileNumber)
   profileNumberMax = profilesFiltered.length
   return (profileNumberMax, profilesFiltered)
 }
@@ -57,6 +58,7 @@ const dislikeProfile = function () {
   api.likeOrDislike(matchData)
     .then(() => {
       profileNumber++
+      store.profileNumber = profileNumber
       nextProfile('disliked')
       return profileNumber
     })
