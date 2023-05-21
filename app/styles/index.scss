@@ -1,29 +1,36 @@
 @import '~bootstrap/scss/bootstrap';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-// color palette
+// Color palette
 $color1: #EBE3CB;
 $color2: #FB6B5B;
 $color3: #342C54;
 $color4: #FC8B76;
 
 .rounded-borders {
-  border-radius: 50px 50px 50px 50px;
-  -moz-border-radius: 50px 50px 50px 50px;
-  -webkit-border-radius: 50px 50px 50px 50px
-};
+  border-radius: 50px;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+}
 
 body {
   background-color: $color3;
   font-family: 'Montserrat', sans-serif;
 }
 
-#home-page, #settings-page, #profile-page, #matches-page, .navbar, #sign-up, #matches-link {
-  display: none
+#home-page,
+#settings-page,
+#profile-page,
+#matches-page,
+.navbar,
+#sign-up,
+#matches-link {
+  display: none;
 }
 
-.btn, #nav-button {
-  @extend .rounded-borders
+.btn,
+#nav-button {
+  @extend .rounded-borders;
 }
 
 .button-display {
@@ -31,17 +38,29 @@ body {
   justify-content: center;
 }
 
-.button-display > .btn,  #login-button, #create-button, #change-password-button {
-  width: 35vw
+.button-display>.btn,
+#login-button,
+#create-button,
+#change-password-button {
+  width: 35vw;
 }
 
-#login-button, #create-button, #change-password-button, #submit-profile-change-button, #user-yes, #modal-match-matches {
+#login-button,
+#create-button,
+#change-password-button,
+#submit-profile-change-button,
+#user-yes,
+#modal-match-matches {
   background-color: $color3;
   color: $color2;
   font-weight: bold;
 }
 
-#update-profile, #create-profile, #user-no, #sign-out-button, #modal-match-close{
+#update-profile,
+#create-profile,
+#user-no,
+#sign-out-button,
+#modal-match-close {
   background-color: $color2;
   color: $color3;
   font-weight: bold;
@@ -68,7 +87,7 @@ nav {
 .nav-link {
   font-size: 14px;
   line-height: 0.2;
-  margin: 0px
+  margin: 0px;
 }
 
 #nav-burger {
@@ -81,10 +100,11 @@ section {
   max-width: 95vw;
   margin-left: 2.5vw;
   margin-right: 2.5vw;
-  padding: 0
+  padding: 0;
 }
 
-.container, .container-fluid {
+.container,
+.container-fluid {
   max-width: 95vw;
 }
 
@@ -92,7 +112,7 @@ section {
   border: 5px solid black;
   margin-left: 0;
   margin-right: 0;
-  padding: 15px
+  padding: 15px;
 }
 
 form {
@@ -107,24 +127,38 @@ form {
 }
 
 #sign-in-page {
-  height: 95vh
+  height: 95vh;
 }
 
-#sign-in-page, #home-page, #settings-page, #profile-page, #matches-page {
+#sign-in-page,
+#home-page,
+#settings-page,
+#profile-page,
+#matches-page {
   max-height: 95vh;
   width: 95vw;
   margin: 2.5vw;
   background-color: $color1;
-  @extend .rounded-borders
+  @extend .rounded-borders;
 }
 
-#sign-in, #sign-up, #change-password, #edit-profile-container, #your-profiles-display, #your-matches-display {
+#sign-in,
+#sign-up,
+#change-password,
+#edit-profile-container,
+#your-profiles-display,
+#your-matches-display {
   background-color: $color4;
   margin-top: 0;
-  @extend .rounded-borders
+  @extend .rounded-borders;
 }
 
-#sign-in-message, #sign-up-message, #like-dislike-message, #change-password-message, #sign-out-message, #update-profile-message {
+#sign-in-message,
+#sign-up-message,
+#like-dislike-message,
+#change-password-message,
+#sign-out-message,
+#update-profile-message {
   text-align: center;
 }
 
@@ -132,7 +166,7 @@ form {
   max-height: 35vh;
   max-width: 35vw;
   padding: 0;
-  @extend .rounded-borders
+  @extend .rounded-borders;
 }
 
 #image-display {
@@ -142,7 +176,7 @@ form {
 
 #user-display {
   background-color: $color4;
-  @extend .rounded-borders
+  @extend .rounded-borders;
 }
 
 #user-tag {
@@ -156,7 +190,8 @@ form {
   font-weight: bold;
 }
 
-#user-age-gender, #user-location {
+#user-age-gender,
+#user-location {
   font-size: 14px;
   margin-bottom: 0;
 }
@@ -164,13 +199,13 @@ form {
 #user-about {
   font-size: 20px;
   padding: 0;
-  margin-left: 12px
+  margin-left: 12px;
 }
 
 #no-more-profiles {
-  text-align:center;
+  text-align: center;
   font-weight: bold;
-  color: $color3
+  color: $color3;
 }
 
 #sign-out {
@@ -178,13 +213,15 @@ form {
   justify-content: center;
 }
 
-#profile-container, #multiple-profiles-buttons, #matches-container {
+#profile-container,
+#multiple-profiles-buttons,
+#matches-container {
   flex-wrap: wrap;
   font-size: 4vw;
 }
 
 span {
-  color: red
+  color: red;
 }
 
 #clear-form-fields {
@@ -195,16 +232,16 @@ span {
 .multiple-profile-display {
   background-color: $color2;
   text-align: center;
-  @extend .rounded-borders
+  @extend .rounded-borders;
 }
 
 .multiple-matches-display {
   background-color: $color2;
   text-align: center;
-  @extend .rounded-borders
+  @extend .rounded-borders;
 }
 
 .modal-content {
   background-color: $color4;
-  @extend .rounded-borders
+  @extend .rounded-borders;
 }
