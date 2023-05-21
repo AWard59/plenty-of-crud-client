@@ -1,15 +1,17 @@
 'use strict'
 
-const store = require('../store')
-const ui = require('../profiles/ui')
-const api = require('../auth-user/api')
-const authProfileApi = require('../auth-profiles/api')
-const shuffle = require('knuth-shuffle').knuthShuffle
+// Importing necessary modules and functions
+const store = require('../store') // Store module for storing data
+const ui = require('../profiles/ui') // UI module for profile-related UI functions
+const api = require('../auth-user/api') // API module for user authentication
+const authProfileApi = require('../auth-profiles/api') // API module for user profiles
+const shuffle = require('knuth-shuffle').knuthShuffle // Shuffle function for array randomization
 
-let profileNumber = 0
-let profileNumberMax
-let profilesFiltered
+let profileNumber = 0 // Counter for the current profile being displayed
+let profileNumberMax // Maximum number of profiles
+let profilesFiltered // Filtered array of profiles
 
+// Function to get user profile data and filter out profiles
 const getUserData = function (userData) {
   const profiles = userData.userProfile
   const filterOwner = profiles.filter(filteredProfiles =>
@@ -24,14 +26,15 @@ const getUserData = function (userData) {
   const filterMatched = filterDislikes.filter(filteredProfiles =>
     filteredProfiles._id !== store.user.matched
   )
-  profilesFiltered = shuffle(filterMatched.slice(0))
+  profilesFiltered = shuffle(filterMatched.slice(0)) // Randomize and store the filtered profiles
   store.profileArray = profilesFiltered
   store.profileNumber = profileNumber
-  ui.displayProfiles(profilesFiltered, profileNumber)
+  ui.displayProfiles(profilesFiltered, profileNumber) // Display the profiles on the UI
   profileNumberMax = profilesFiltered.length
   return (profileNumberMax, profilesFiltered)
 }
 
+// Function to like a profile
 const likeProfile = function () {
   const profile = store.profileArray
   const userId = profile[profileNumber]._id
@@ -39,15 +42,16 @@ const likeProfile = function () {
     id: userId,
     data: 'Like'
   }
-  authProfileApi.likeOrDislike(matchData)
+  authProfileApi.likeOrDislike(matchData) // Call the likeOrDislike function from the authProfileApi module
     .then(() => {
       profileNumber++
-      nextProfile('liked')
+      nextProfile('liked') // Move to the next profile and display a like message on the UI
       return profileNumber
     })
     .catch(console.error())
 }
 
+// Function to dislike a profile
 const dislikeProfile = function () {
   const profile = store.profileArray
   const userId = profile[profileNumber]._id
@@ -55,19 +59,20 @@ const dislikeProfile = function () {
     id: userId,
     data: 'Dislike'
   }
-  api.likeOrDislike(matchData)
+  api.likeOrDislike(matchData) // Call the likeOrDislike function from the API module
     .then(() => {
       profileNumber++
       store.profileNumber = profileNumber
-      nextProfile('disliked')
+      nextProfile('disliked') // Move to the next profile and display a dislike message on the UI
       return profileNumber
     })
     .catch(console.error())
 }
 
+// Function to move to the next profile
 const nextProfile = function (likeOrDislike) {
-  ui.likeOrDislikeMessage(likeOrDislike)
-  isLastProfile()
+  ui.likeOrDislikeMessage(likeOrDislike) // Display a like or dislike message on the UI
+  isLastProfile() // Check if it's the last profile
   authProfileApi.getUserData()
     .then((data) => {
       const profile = data.userProfile
@@ -82,18 +87,19 @@ const nextProfile = function (likeOrDislike) {
         profileId.likes,
         profileId.likedBy
       ]
-      doesSomebodyLikeMe(matchData)
+      doesSomebodyLikeMe(matchData) // Check if there is a match with the current profile
     })
 }
 
 const isLastProfile = function () {
   if (profileNumber >= profileNumberMax) {
-    ui.noMoreProfiles()
+    ui.noMoreProfiles() // Display a message indicating there are no more profiles
   } else {
-    ui.displayProfiles(profilesFiltered, profileNumber)
+    ui.displayProfiles(profilesFiltered, profileNumber) // Display the next profile on the UI
   }
 }
 
+// Function to check if there is a mutual match with the current profile
 const doesSomebodyLikeMe = function (matchData) {
   const likes = matchData[0]
   const likedBy = matchData[1]
@@ -113,7 +119,7 @@ const doesSomebodyLikeMe = function (matchData) {
     const k = newMatch[j]
     newLikes.splice(likes.indexOf([k]), 1)
   }
-  // match prompt
+  // Check if there is a match and display appropriate message on the UI
   if (newMatch[0] !== '' && newMatch.length > 0) {
     authProfileApi.addMatches(newMatch, newLikes, newLikedBy)
       .then(() => {

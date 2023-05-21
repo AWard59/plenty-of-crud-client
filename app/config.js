@@ -1,15 +1,17 @@
-let apiUrl
+let apiUrl // Declare apiUrl variable
+
 const apiUrls = {
-  production: 'https://plenty-of-crud.herokuapp.com',
-  development: 'http://localhost:4741'
+  production: 'https://plenty-of-crud.herokuapp.com', // Production API URL
+  development: 'http://localhost:4741' // Development API URL
 }
 
 if (window.location.hostname === 'localhost') {
-  apiUrl = apiUrls.development
+  // Check if the hostname is localhost
+  apiUrl = apiUrls.development // Set apiUrl to development URL
 } else {
-  apiUrl = apiUrls.production
+  apiUrl = apiUrls.production // Set apiUrl to production URL
 }
 
 module.exports = {
-  apiUrl
+  apiUrl // Export the apiUrl variable
 }

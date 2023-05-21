@@ -1,53 +1,55 @@
-const config = require('../config')
-const store = require('../store')
+// Importing necessary modules and functions.
+const config = require('../config') // Configuration file
+const store = require('../store') // Store module for storing data
 
+// Function to get user data.
 const getUser = function () {
   return $.ajax({
-    url: `${config.apiUrl}/user/`,
+    url: `${config.apiUrl}/user/`, // API endpoint to retrieve user data
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${store.user.token}`
+      Authorization: `Bearer ${store.user.token}` // Authorization token for authentication
     }
   })
 }
 
-// using formData from events.js, make POST request to api to create a new user object
-// return result
+// Function to create a new user.
 const signUp = function (formData) {
   return $.ajax({
-    url: `${config.apiUrl}/sign-up`,
+    url: `${config.apiUrl}/sign-up`, // API endpoint to create a new user
     method: 'POST',
-    data: formData
+    data: formData // Form data containing user information
   })
 }
 
+// Function to sign in as a user.
 const signIn = function (formData) {
   return $.ajax({
-    url: `${config.apiUrl}/sign-in`,
+    url: `${config.apiUrl}/sign-in`, // API endpoint to sign in
     method: 'POST',
-    data: formData
+    data: formData // Form data containing user credentials
   })
 }
 
-// Token needs to be the same as the token created when logging in
-// delete that token - requiring user to sign in again for access
+// Function to sign out the user by deleting the authentication token.
 const signOut = function () {
   return $.ajax({
-    url: `${config.apiUrl}/sign-out`,
+    url: `${config.apiUrl}/sign-out`, // API endpoint to sign out
     method: 'DELETE',
     headers: {
-      Authorization: `Bearer ${store.user.token}`
+      Authorization: `Bearer ${store.user.token}` // Authorization token for authentication
     }
   })
 }
 
+// Function to change the user's password.
 const changePassword = function (formData) {
   return $.ajax({
-    url: `${config.apiUrl}/change-password`,
+    url: `${config.apiUrl}/change-password`, // API endpoint to change the password
     method: 'PATCH',
-    data: formData,
+    data: formData, // Form data containing old and new passwords
     headers: {
-      Authorization: `Bearer ${store.user.token}`
+      Authorization: `Bearer ${store.user.token}` // Authorization token for authentication
     }
   })
 }

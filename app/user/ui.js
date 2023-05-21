@@ -1,15 +1,18 @@
 'use strict'
 
+// Show sign-up section, hide sign-in section
 const signUpDisplay = function () {
   $('#sign-in').hide()
   $('#sign-up').show()
 }
 
+// Show sign-in section, hide sign-up section
 const signInDisplay = function () {
   $('#sign-up').hide()
   $('#sign-in').show()
 }
 
+// Display sign-up success message
 const signUpSuccess = function () {
   $('#sign-up-message').html(
     '<p>Signed up successfully!</p> <br> <p>Sign In to continue</p>'
@@ -22,7 +25,7 @@ const signUpSuccess = function () {
   signInDisplay()
 }
 
-// text response stating failure, addclass text danger (red)
+// Display sign-up failure message
 const signUpFailure = function () {
   $('#sign-up-message').text('Sign up failed')
   $('#sign-up-message').removeClass()
@@ -30,8 +33,7 @@ const signUpFailure = function () {
   $('#sign-up-message').fadeOut(5000)
 }
 
-// hide the sign-in-page section from user's view. show the game-page section
-// prevents a refresh of webpage
+// Display sign-in success message and navigate to the home page
 const signInSuccess = function (isNew) {
   $('#sign-in-message').text('Signed in successfully!')
   $('#sign-in-message').removeClass()
@@ -55,6 +57,7 @@ const signInSuccess = function (isNew) {
   }
 }
 
+// Display sign-in failure message
 const signInFailure = function () {
   $('#sign-in-message').text('Sign in failed')
   $('#sign-in-message').removeClass()
@@ -62,15 +65,19 @@ const signInFailure = function () {
   $('#sign-in-message').fadeOut(5000)
 }
 
+// Perform sign-out success actions
 const signOutSuccess = function () {
   $('#settings-page').hide()
   $('.navbar').hide()
   $('#sign-in-page').show()
   $('#sign-out-message').show()
-  $('#sign-out-message').html('<p class=text-success>Signed Out Successfully</p>')
+  $('#sign-out-message').html(
+    '<p class=text-success>Signed Out Successfully</p>'
+  )
   $('sign-out-message').fadeOut(5000)
 }
 
+// Display sign-out failure message
 const signOutFailure = function () {
   $('#sign-out-message').text('Sign out failed')
   $('#sign-out-message').removeClass()
@@ -78,6 +85,7 @@ const signOutFailure = function () {
   $('#sign-out-message').fadeOut(5000)
 }
 
+// Display change password success message
 const changePasswordSuccess = function () {
   $('#change-password-message').text('Password Changed Successfully!')
   $('#change-password-message').removeClass()
@@ -87,6 +95,7 @@ const changePasswordSuccess = function () {
   $('form').trigger('reset')
 }
 
+// Display change password failure message
 const changePasswordFailure = function () {
   $('#change-password-message').text('Password Change Failed')
   $('#change-password-message').removeClass()

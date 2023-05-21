@@ -2,6 +2,7 @@
 
 const store = require('../store')
 
+// Reset the display of profile information
 const resetDisplayProfiles = function () {
   $('#user-tag').text('')
   $('#user-name').text('')
@@ -11,8 +12,10 @@ const resetDisplayProfiles = function () {
   $('#user-image').attr('src', '')
 }
 
+// Display profile information on the UI
 const displayProfiles = function (profiles, num) {
   if (num === undefined) {
+    // If num is not provided, use the default values from the store
     profiles = store.userProfile
     num = store.profileNumber
   }
@@ -29,6 +32,7 @@ const displayProfiles = function (profiles, num) {
   }
 }
 
+// Show the home page
 const homePage = function () {
   $('#settings-page').hide()
   $('#profile-page').hide()
@@ -36,6 +40,7 @@ const homePage = function () {
   $('#home-page').show()
 }
 
+// Show the profile page
 const profilePage = function (isNew) {
   console.log(store.profile)
   if (isNew === 'new') {
@@ -57,6 +62,7 @@ const profilePage = function (isNew) {
   }
 }
 
+// Show the settings page
 const settingsPage = function () {
   $('#profile-page').hide()
   $('#home-page').hide()
@@ -64,6 +70,7 @@ const settingsPage = function () {
   $('#settings-page').show()
 }
 
+// Show the matches page
 const matchesPage = function () {
   $('#match-modal').hide()
   $('#settings-page').hide()
@@ -72,6 +79,7 @@ const matchesPage = function () {
   $('#matches-page').show()
 }
 
+// Display multiple profiles on the UI
 const displayMultipleProfiles = function () {
   const profiles = store.user.userProfile
   $('.multiple-profile-display').remove()
@@ -94,18 +102,21 @@ const displayMultipleProfiles = function () {
   }
 }
 
+// Enable profile update mode
 const enableUpdate = function () {
   $('#edit-profile').show()
   $('#edit-profile').removeClass('create-profile')
   $('#edit-profile').addClass('update-profile')
 }
 
+// Enable profile create mode
 const enableCreate = function () {
   $('#edit-profile').show()
   $('#edit-profile').removeClass('update-profile')
   $('#edit-profile').addClass('create-profile')
 }
 
+// Handle successful profile update
 const updateProfileSuccess = function () {
   $('#update-profile-message').text('Profile Updated Successfully!')
   $('#update-profile-message').removeClass()
@@ -116,6 +127,7 @@ const updateProfileSuccess = function () {
   profilePage()
 }
 
+// Handle failed profile update
 const updateProfileFailure = function () {
   $('#update-profile-message').text('Profile Update Failed')
   $('#update-profile-message').removeClass()
@@ -123,6 +135,7 @@ const updateProfileFailure = function () {
   $('#update-profile-message').fadeOut(5000)
 }
 
+// Handle successful profile creation
 const createProfileSuccess = function () {
   $('#update-profile-message').text('Profile Created Successfully!')
   $('#update-profile-message').removeClass()
@@ -136,6 +149,7 @@ const createProfileSuccess = function () {
   $('#create-profile').show()
 }
 
+// Handle failed profile creation
 const createProfileFailure = function () {
   $('#update-profile-message').text('Profile Create Failed')
   $('#update-profile-message').removeClass()
@@ -143,6 +157,7 @@ const createProfileFailure = function () {
   $('#update-profile-message').fadeOut(5000)
 }
 
+// Handle successful profile deletion
 const deleteProfileSuccess = function () {
   $('#update-profile-message').text('Profile Deleted Successfully!')
   $('#update-profile-message').removeClass()
@@ -151,6 +166,7 @@ const deleteProfileSuccess = function () {
   displayMultipleProfiles()
 }
 
+// Handle failed profile deletion
 const deleteProfileFailure = function () {
   $('#update-profile-message').text('Profile did not delete')
   $('#update-profile-message').removeClass()
@@ -158,6 +174,7 @@ const deleteProfileFailure = function () {
   $('#update-profile-message').fadeOut(5000)
 }
 
+// Clear profile form fields
 const clearFormFields = function () {
   $('#profile-display-name').val('')
   $('#profile-description').val('')
@@ -167,6 +184,7 @@ const clearFormFields = function () {
   $('#profile-gender').val('')
 }
 
+// Show message when there are no more profiles to display
 const noMoreProfiles = function () {
   $('#user-no').hide()
   $('#user-yes').hide()
@@ -174,6 +192,7 @@ const noMoreProfiles = function () {
   $('#no-more-profiles').text('🚫  No more profiles to view!')
 }
 
+// Show a message when a profile is liked or disliked
 const likeOrDislikeMessage = function (likeOrDislike) {
   $('#like-dislike-message').removeClass().stop(true, true).show()
   $('#like-dislike-message').text(`You have ${likeOrDislike} this profile!`)
@@ -181,6 +200,7 @@ const likeOrDislikeMessage = function (likeOrDislike) {
   $('#like-dislike-message').fadeOut(5000)
 }
 
+// Display multiple matches on the UI
 const displayMultipleMatches = function (matches) {
   $('.multiple-matches-display').remove()
   for (let i = 0; i < matches.length; i++) {
@@ -197,6 +217,7 @@ const displayMultipleMatches = function (matches) {
   }
 }
 
+// Close the match modal
 const modalClose = function () {
   $('#match-modal').hide()
 }
