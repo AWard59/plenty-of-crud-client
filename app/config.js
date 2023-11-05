@@ -1,7 +1,8 @@
 let apiUrl // Declare apiUrl variable
 
 const apiUrls = {
-  production: 'https://plenty-of-crud.herokuapp.com', // Production API URL
+  production: 'https://plenty-of-crud.cyclic.app', // Production API URL
+  // production: 'https://plenty-of-crud.herokuapp.com', // Production API URL
   development: 'http://localhost:4741' // Development API URL
 }
 
